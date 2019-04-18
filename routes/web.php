@@ -22,4 +22,14 @@ Route::resource('/servicio','ServicioController');
 Route::resource('/cliente','ClienteController');
 Route::resource('/user','UserController');
 Route::resource('/articulo','ArticuloController');
+Route::resource('/cargo','CargoController');
+Route::resource('/tipo','TipooServicioController');
+Route::resource('/razon','ReazonPendienteController');
+Route::resource('/modo','ModoServicioController');
+Route::resource('/estado','EstadoPedidoController');
+Route::resource('/proveedor','ProveedorController');
+Route::resource('/factura','FacturaController');
+Route::resource('/producto','ProductoController');
+
+
 Route::post('/search','ClienteController@buscar')->name('search');

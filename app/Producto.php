@@ -6,6 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Producto extends Model
 {
+    protected $fillable = [
+        'factura_id',
+        'proveedor_id',
+        'referencia',
+        'descripcion',
+        'costo_entrada',
+        'cantidad'
+
+    ];
     function proveedor ()
     {
         return $this-> belongsTo(Proveedor::Class);

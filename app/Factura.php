@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Factura extends Model
 {
+    protected  $fillable = [
+        'vendedor_id',
+        'cliente_id',
+        'fecha'
+    ];
     function productos ()
     {
         return $this-> hasMany(Producto::Class);

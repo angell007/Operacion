@@ -36,7 +36,12 @@ class CargoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            Cargo::create(request()->all());
+            return back()->with('success_msg','Cargo registrado correctamente ');
+        } catch (\Throwable $th) {
+            return back()->with('warning_msg','Cargo no fue registrado '.$th->getMessage());
+        }
     }
 
     /**

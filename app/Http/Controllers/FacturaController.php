@@ -35,7 +35,12 @@ class FacturaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            Factura::create(request()->all());
+            return back()->with('success_msg',' registrado correctamente ');
+        } catch (\Throwable $th) {
+            return back()->with('warning_msg','no fue registrado '.$th->getMessage());
+        }
     }
 
     /**

@@ -362,6 +362,341 @@
     
         </form>
 
+        <div class="form-group col-md-12" style="background-color:#f3f3f3; font-size: 2.3rem;">
+            <table>
+                <tr>
+                    <th class="text text-default">
+                        <span>
+                            Cargo!!
+                        </span>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <form action="{{ route('cargo.store') }}" method="POST">
+            {{ csrf_field() }}
+    
+                {{-- <div class="form-group col-md-6">
+                        <label>modo de servicio</label>
+                        <select class="form-control" name="modo_servicio_id">
+                            <option> Choose...</option>
+                            <option value="1">Domiciliario</option>
+                            <option value="2">Garantia</option>
+                        </select>
+                    </div> --}}
+
+
+            <div class="form-group col-md-6">
+                <label> nombre </label>
+                <input type="text" class="form-control" name="nombre" placeholder="nombre de cargo">
+            </div>
+
+
+            <div class="form-group col-md-12">
+                <label> descripcion  </label>
+            <textarea  name="descripcion"  type="text" class="form-control">
+
+            </textarea>
+            </div>
+
+            <div class="form-group col-md-12">
+                <button type="submit" class="btn btn-primary">Registrar cargo</button>
+            </div>
+    
+        </form>
+
+        <div class="form-group col-md-12" style="background-color:#f3f3f3; font-size: 2.3rem;">
+            <table>
+                <tr>
+                    <th class="text text-default">
+                        <span>
+                                Tipos de servicio !!
+                        </span>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <form action="{{ route('tipo.store') }}" method="POST">
+            {{ csrf_field() }}
+
+            <div class="form-group col-md-6">
+                <label> tipo de servicio </label>
+                <input type="text" class="form-control" name="nombre" placeholder="nombre de tipo ">
+            </div>
+
+
+            <div class="form-group col-md-12">
+                <label> descripcion  </label>
+            <textarea  name="descripcion"  type="text" class="form-control">
+
+            </textarea>
+            </div>
+
+            <div class="form-group col-md-12">
+                <button type="submit" class="btn btn-primary">Registrar tipo</button>
+            </div>
+    
+        </form>
+
+        <div class="form-group col-md-12" style="background-color:#f3f3f3; font-size: 2.3rem;">
+            <table>
+                <tr>
+                    <th class="text text-default">
+                        <span>
+                            Modo de servicio  !!
+                        </span>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <form action="{{ route('modo.store') }}" method="POST">
+            {{ csrf_field() }}
+
+            <div class="form-group col-md-6">
+                <label>  Modo de servicio </label>
+                <input type="text" class="form-control" name="nombre" placeholder="nombre de  Modo de servicio ">
+            </div>
+
+
+            <div class="form-group col-md-12">
+                <label> descripcion  </label>
+            <textarea  name="descripcion"  type="text" class="form-control">
+
+            </textarea>
+            </div>
+
+            <div class="form-group col-md-12">
+                <button type="submit" class="btn btn-primary">Registrar  Modo de servicio</button>
+            </div>
+    
+        </form>
+
+        <div class="form-group col-md-12" style="background-color:#f3f3f3; font-size: 2.3rem;">
+            <table>
+                <tr>
+                    <th class="text text-default">
+                        <span>
+                            Razon pendiente !!
+                        </span>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <form action="{{ route('razon.store') }}" method="POST">
+            {{ csrf_field() }}
+
+            <div class="form-group col-md-6">
+                <label> Razon pendiente </label>
+                <input type="text" class="form-control" name="nombre" placeholder="nombre de Razon pendiente ">
+            </div>
+
+
+            <div class="form-group col-md-12">
+                <label> descripcion  </label>
+            <textarea  name="descripcion"  type="text" class="form-control">
+
+            </textarea>
+            </div>
+
+            <div class="form-group col-md-12">
+                <button type="submit" class="btn btn-primary">Registrar Razon pendiente</button>
+            </div>
+    
+        </form>
+
+        <div class="form-group col-md-12" style="background-color:#f3f3f3; font-size: 2.3rem;">
+            <table>
+                <tr>
+                    <th class="text text-default">
+                        <span>
+                            Estado Pedido  !!
+                        </span>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <form action="{{ route('estado.store') }}" method="POST">
+            {{ csrf_field() }}
+
+            <div class="form-group col-md-6">
+                <label> Estado pedido  </label>
+                <input type="text" class="form-control" name="nombre" placeholder="nombre de Estado pedido ">
+            </div>
+
+
+            <div class="form-group col-md-12">
+                <label> descripcion  </label>
+            <textarea  name="descripcion"  type="text" class="form-control">
+
+            </textarea>
+            </div>
+
+            <div class="form-group col-md-12">
+                <button type="submit" class="btn btn-primary">Registrar Estado pedido</button>
+            </div>
+    
+        </form>
+
+        <div class="form-group col-md-12" style="background-color:#f3f3f3; font-size: 2.3rem;">
+            <table>
+                <tr>
+                    <th class="text text-default">
+                        <span>
+                            Proveedor !!
+                        </span>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <form action="{{ route('proveedor.store') }}" method="POST">
+            {{ csrf_field() }}
+
+            <div class="form-group col-md-6">
+                <label> Proveedor </label>
+                <input type="text" class="form-control" name="nombre" placeholder="nombre de proveedor ">
+            </div>
+
+
+            <div class="form-group col-md-12">
+                <label> descripcion  </label>
+            <textarea  name="descripcion"  type="text" class="form-control">
+
+            </textarea>
+            </div>
+
+            <div class="form-group col-md-12">
+                <button type="submit" class="btn btn-primary">Registrar proveedor</button>
+            </div>
+    
+        </form>
+        <div class="form-group col-md-12" style="background-color:#f3f3f3; font-size: 2.3rem;">
+            <table>
+                <tr>
+                    <th class="text text-default">
+                        <span>
+                            Proveedor !!
+                        </span>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <form action="{{ route('proveedor.store') }}" method="POST">
+            {{ csrf_field() }}
+
+            <div class="form-group col-md-6">
+                <label> Proveedor </label>
+                <input type="text" class="form-control" name="nombre" placeholder="nombre de proveedor ">
+            </div>
+
+
+            <div class="form-group col-md-12">
+                <label> descripcion  </label>
+            <textarea  name="descripcion"  type="text" class="form-control">
+
+            </textarea>
+            </div>
+
+            <div class="form-group col-md-12">
+                <button type="submit" class="btn btn-primary">Registrar proveedor</button>
+            </div>
+    
+        </form>
+
+        <div class="form-group col-md-12" style="background-color:#f3f3f3; font-size: 2.3rem;">
+            <table>
+                <tr>
+                    <th class="text text-default">
+                        <span>
+                           Factura !!
+                        </span>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <form action="{{ route('factura.store') }}" method="POST">
+            {{ csrf_field() }}
+
+            <div class="form-group col-md-6">
+                <label> cod cliente </label>
+                <input type="text" class="form-control" name="cliente_id" placeholder="cod cliente">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label> cod vendedor </label>
+                <input type="text" class="form-control" name="vendedor_id" placeholder="cod vendedor ">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label> fecha </label>
+                <input type="date" class="form-control" name="fecha" placeholder="Fecha ">
+            </div>
+            
+            <div class="form-group col-md-12">
+                <button type="submit" class="btn btn-primary">Registrar Factura</button>
+            </div>
+    
+        </form>
+
+        <div class="form-group col-md-12" style="background-color:#f3f3f3; font-size: 2.3rem;">
+            <table>
+                <tr>
+                    <th class="text text-default">
+                        <span>
+                           Producto !!
+                        </span>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+        <form action="{{ route('producto.store') }}" method="POST">
+            {{ csrf_field() }}
+
+            <div class="form-group col-md-6">
+                <label> Factura de referencia </label>
+                <input type="text" class="form-control" name="factura_id" placeholder="Faactura de Referencia">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label> Referencia de Proveedor </label>
+                <input type="text" class="form-control" name="proveedor_id" placeholder="Referencia de Proveedor ">
+            </div>
+
+            <div class="form-group col-md-6">
+                <label> Referencia </label>
+                <input type="text" class="form-control" name="referencia" placeholder="Referencia">
+            </div>
+
+            
+            <div class="form-group col-md-6">
+                <label> Costo de entrada</label>
+                <input type="number" class="form-control" name="costo_entrada" placeholder="Referencia de Proveedor ">
+            </div>
+            
+            <div class="form-group col-md-6">
+                <label>cantidad </label>
+                <input type="number" class="form-control" name="cantidad" placeholder="cantidad ">
+            </div>
+            
+            <div class="form-group col-md-12">
+                <label> descripcion  </label>
+            <textarea  name="descripcion"  type="text" class="form-control">
+            </textarea>
+            </div>
+            
+            <div class="form-group col-md-12">
+                <button type="submit" class="btn btn-primary">Registrar producto</button>
+            </div>
+    
+        </form>
 
 </div>
 @endsection

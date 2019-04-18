@@ -35,7 +35,12 @@ class ModoServicioController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            ModoServicio::create(request()->all());
+            return back()->with('success_msg','registrado correctamente ');
+        } catch (\Throwable $th) {
+            return back()->with('warning_msg','no fue registrado '.$th->getMessage());
+        }
     }
 
     /**
