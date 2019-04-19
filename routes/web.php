@@ -27,9 +27,9 @@ Route::resource('/tipo','TipooServicioController');
 Route::resource('/razon','ReazonPendienteController');
 Route::resource('/modo','ModoServicioController');
 Route::resource('/estado','EstadoPedidoController');
+// Route::resource('/estado','EstadoController');
 Route::resource('/proveedor','ProveedorController');
 Route::resource('/factura','FacturaController');
 Route::resource('/producto','ProductoController');
-
-
+Route::get('/{id?}','ServicioController@registro')->name('registro');
 Route::post('/search','ClienteController@buscar')->name('search');

@@ -45,7 +45,7 @@
                                   <td>  {{ $cliente->nombre .' '. $cliente->apellido }}   </td>
                                   <td>  {{ $cliente->identificacion }}   </td>
               
-                                  <td data-label="Opcion"><a class = " btn btn-info xs " href="{{ route('servicio.create') }}"> Add Servicio </a> </td>
+                                  <td data-label="Opcion"><a class = " btn btn-info xs " href="{{ route('registro', encrypt($cliente->identificacion )) }}"> Add Servicio </a> </td>
                                   <td>
                                         <div class="form-group">
                                             <form  class="form-group" method = "POST" action="{{ route ('cliente.destroy', $cliente->id) }}">

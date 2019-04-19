@@ -9,7 +9,7 @@ $factory->define(App\Servicio::class, function (Faker $faker) {
         'razon_pendiente_id' => rand(1,20),
         'tipo_servicio_id' => rand(1,20),
         'modo_servicio_id'=>rand(1,20),
-        'customer_id'=>rand(1,20),
+        'customer_id'=>rand(1000000 , 30000000),
         'cliente_id'=>rand(1,20),
         'fecha_inicio'=>$faker->dateTime($max = 'now', $timezone = null), // DateTime('2008-04-25 08:37:17', 'UTC')
         'fecha_reparado'=>$faker->dateTime($max = 'now', $timezone = null), // DateTime('2008-04-25 08:37:17', 'UTC')

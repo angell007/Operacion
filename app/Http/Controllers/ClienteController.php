@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 use Illuminate\Database\QueryException;
 
 use App\Cliente;
+use App\Cargo;
+
 use Illuminate\Http\Request;
 
 class ClienteController extends Controller
@@ -13,10 +15,21 @@ class ClienteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+         $this->middleware('auth');
+ 
+     }
+     
     public function index()
     {
-        $clientes = Cliente::orderBy('id','Desc')->get();
-        return view('cliente.index', compact('clientes'));
+        try {
+            $clientes = Cliente::orderBy('id','Desc')->get();
+            return view('cliente.index', compact('clientes'));
+        } catch (\Throwable $th) {
+            return back()->with('warning_msg','error en clientes '.$th->getMessage());
+        }
     }
  
      /**
@@ -26,7 +39,8 @@ class ClienteController extends Controller
       */
      public function create()
      {
-        //  return view('forms/user.create', compact('cargos'));
+        //  $cargos = Cargo::all()->pluck('id','nombre');
+         return view('cliente.create');
  
      }
  
@@ -42,7 +56,7 @@ class ClienteController extends Controller
         try {
             Cliente::create(request()->all());
             return back()->with('success_msg','successfully saved');
-        } catch (QueryException $e) {
+        } catch (\Throwable $th) {
             return back()->with('warning_msg','unsuccessfully saved'. $e->getMessage());
         }
 
@@ -51,59 +65,70 @@ class ClienteController extends Controller
      /**
       * Display the specified resource.
       *
-      * @param  \App\User  $user
+      * @param  \App\Cliente  $Cliente
       * @return \Illuminate\Http\Response
       */
      public function show(Cliente $cliente)
      {
-        //  $cargos = Cargo::orderBy('id','Desc')->get();
-         $cliente =   Cliente::findOrFail($cliente->id);
-         $servicios = $cliente->servicios;
-         return  view('cliente.show')->with(compact(['cliente','servicios']));
+        try {
+            $cliente =   Cliente::findOrFail($cliente->id);
+            $servicios = $cliente->servicios;
+            return  view('cliente.show')->with(compact(['cliente','servicios']));
+        } catch (\Throwable $th) {
+            return back()->with('warning_msg','Error en clientes '. $e->getMessage());
+        }
 
-        // return  view('cliente.show')->with(compact(['user', 'cargos']));
      }
  
      /**
       * Show the form for editing the specified resource.
       *
-      * @param  \App\User  $user
+      * @param  \App\Cliente  $Cliente
       * @return \Illuminate\Http\Response
       */
-     public function edit(User $user)
+     public function edit(Cliente $Cliente)
      {
-        
-         $user =   User::findOrFail($user->id);
-         return  view('forms/user.edit',compact('cargos'));
+        try {
+            $Cliente =   Cliente::findOrFail($Cliente->id);
+            return  view('forms/Cliente.edit',compact('cargos'));
+        } catch (\Throwable $th) {
+            return back()->with('warning_msg','Error en clientes '. $e->getMessage());
+        }
      }
  
      /**
       * Update the specified resource in storage.
       *
       * @param  \Illuminate\Http\Request  $request
-      * @param  \App\User  $user
+      * @param  \App\Cliente  $Cliente
       * @return \Illuminate\Http\Response
       */
-     public function update(Request $request, User $user)
+     public function update(Request $request, Cliente $Cliente)
      {
-         $user = User::findOrFail($user->id);
-         $user -> update(request()->all());
-         flash()->success('Operacion Sistemica', 'User successfully update.');     
-         return redirect()->action('UserController@index');
+        try {
+            $Cliente = Cliente::findOrFail($Cliente->id);
+         $Cliente -> update(request()->all());
+        } catch (\Throwable $th) {
+            return back()->with('warning_msg','Error en clientes '. $e->getMessage());
+        }
      }
  
      /**
       * Remove the specified resource from storage.
       *
-      * @param  \App\User  $user
+      * @param  \App\Cliente  $Cliente
       * @return \Illuminate\Http\Response
       */
-     public function destroy(User $user)
+     public function destroy(Cliente $Cliente)
      {
-         $user = User::findOrFail($user->id);
-         $user->delete();
-         flash()->success('Operacion Sistemica', 'User successfully delete.');     
-         return redirect()->back();
+        try {
+            $Cliente = Cliente::findOrFail($Cliente->id);
+            $Cliente->delete();
+            return back()->with('success_msg',' Exito ');
+        } catch (\Throwable $th) {
+            return back()->with('warning_msg','Error en clientes '. $e->getMessage());
+        }
+
      }
 
 
@@ -114,13 +139,12 @@ class ClienteController extends Controller
          if(empty($cc)){
             $clientes = Cliente::all();
             return view('cliente.index', compact('clientes'));
-            //   return back()->with('warning_msg','Nothing');
         }
          else {
             $clientes = Cliente::where('identificacion','like','%'.$cc.'%')->get();
             return view('cliente.index', compact('clientes'));
              }             
-        } catch (QueryException $e) {
+        } catch (\Throwable $th) {
             return back()->with('warning_msg',' some wrong'. $e->getMessage());
         }
        

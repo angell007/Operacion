@@ -17,7 +17,7 @@ class CreateFacturasTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('vendedor_id');
             $table->unsignedInteger('cliente_id');
-            $table->dateTime('fecha');
+            $table->date('fecha');
             $table->timestamps();
         });
     }

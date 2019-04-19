@@ -6,8 +6,8 @@
             <table class="table">
                 <tr class="form-group">
                     <th scope="col">
-                        <h3> Clientes</h3>
-                        <a class=" btn btn-info xs " href="{{ route('cliente.create') }}"> Add Cliente </a>
+                        <h3> Tipos de servicio </h3>
+                        <a class=" btn btn-info xs " href="{{ route('tipo.create') }}"> Add tipo </a>
                     </th>
                 </tr>
             </table>
@@ -40,25 +40,23 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
-                <th scope="col">Identificacion</th>
-                <th scope="col">Opciones</th>
-                <th scope="col">Opciones</th>
-
+                <th scope="col"> Descripcion </th>
             </tr>
         </thead>
         <tbody>
 
-            @foreach ($clientes as $cliente)
+            @foreach ($tipos as $tipo)
             <tr>
-                <th scope="row">{{ $cliente->id }}</th>
-                <td> {{ $cliente->nombre .' '. $cliente->apellido }} </td>
-                <td> {{ $cliente->identificacion }} </td>
+                <td> {{ $tipo->id}} </td>
+                <th scope="row">{{ $tipo->nombre}}</th>
+                <td> {{ $tipo->descripcion}} </td>
 
-                <td data-label="Opcion"><a class=" btn btn-info xs " href="{{ route('cliente.show', $cliente->id) }}">
-                        Mostrar </a> </td>
+
+                <td data-label="Opcion"><a class=" btn btn-info xs " href="{{ route('tipo.edit', $tipo->id) }}">
+                        Editar </a> </td>
                 <td>
                     <div class="form-group">
-                        <form class="form-group" method="POST" action="{{ route ('cliente.destroy', $cliente->id) }}">
+                        <form class="form-group" method="POST" action="{{ route ('tipo.destroy', $tipo->id) }}">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <button class=" btn btn-danger xs " type="submit">Eliminar</button>

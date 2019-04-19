@@ -35,7 +35,7 @@ class CreateServiciosTable extends Migration
             $table->string('ubicacion_producto')->nullable();
             $table->timestamps();
             
-            $table->foreign('customer_id')->references('id')->on('users')->
+            $table->foreign('customer_id')->references('identificacion')->on('users')->
             onDelete('cascade')->onUpdate('cascade');
         });
     }

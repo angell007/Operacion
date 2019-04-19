@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'cargo_id'
+        'name', 'email', 'password', 'cargo_id','identificacion'
     ];
 
     /**
@@ -40,8 +40,18 @@ class User extends Authenticatable
 
     function Servicios ()
     {
-        return $this-> hasMany(Servicio::Class);
+        return $this-> hasMany(Servicio::Class,  'identificacion' , 'customer_id' );
     }
 
+
+    public function hasRoles(array $rols)
+    {
+    foreach ($rols as $key ) {
+    if ($this->role===$key) {
+        return true;     
+    }
+    return false;  
+    }
+    }
     
 }

@@ -6,8 +6,8 @@
             <table class="table">
                 <tr class="form-group">
                     <th scope="col">
-                        <h3> Clientes</h3>
-                        <a class=" btn btn-info xs " href="{{ route('cliente.create') }}"> Add Cliente </a>
+                        <h3> productos </h3>
+                        <a class=" btn btn-info xs " href="{{ route('producto.create') }}"> Add producto </a>
                     </th>
                 </tr>
             </table>
@@ -39,32 +39,37 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Identificacion</th>
-                <th scope="col">Opciones</th>
-                <th scope="col">Opciones</th>
-
+                <th scope="col">Factura ref</th>
+                <th scope="col">Proveedor </th>
+                <th scope="col">referencia</th>
+                <th scope="col">desripcion</th>
+                <th scope="col">costo de entrada </th>
+                <th scope="col">cantidad</th>
             </tr>
         </thead>
         <tbody>
 
-            @foreach ($clientes as $cliente)
+            @foreach ($productos as $producto)
             <tr>
-                <th scope="row">{{ $cliente->id }}</th>
-                <td> {{ $cliente->nombre .' '. $cliente->apellido }} </td>
-                <td> {{ $cliente->identificacion }} </td>
+                    <th scope="col">{{ $producto->id}}</th>
+                    <th scope="col">{{ $producto->factura_id}}</th>
+                    <th scope="col">{{ $producto->proveedor_id}}</th>
+                    <th scope="col">{{ $producto->referencia}} </th>
+                    <th scope="col">{{ $producto->desripcion}}</th>
+                    <th scope="col">{{ $producto->costo_entrada}}</th>
+                    <th scope="col">{{ $producto->cantidad}}</th>
 
-                <td data-label="Opcion"><a class=" btn btn-info xs " href="{{ route('cliente.show', $cliente->id) }}">
-                        Mostrar </a> </td>
-                <td>
+                <th scope="col" data-label="Opcion"><a class=" btn btn-info xs " href="{{ route('producto.edit', $producto->id) }}">
+                        Editar </a> </th>
+                <th scope="col">
                     <div class="form-group">
-                        <form class="form-group" method="POST" action="{{ route ('cliente.destroy', $cliente->id) }}">
+                        <form class="form-group" method="POST" action="{{ route ('producto.destroy', $producto->id) }}">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <button class=" btn btn-danger xs " type="submit">Eliminar</button>
                         </form>
                     </div>
-                </td>
+                </th>
             </tr>
             @endforeach
         </tbody>

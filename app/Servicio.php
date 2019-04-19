@@ -29,19 +29,19 @@ class Servicio extends Model
         'ubicacion_producto',
 
     ];
-    // function productos ()
-    // {
-    //     return $this-> hasMany(Producto::Class);
-    // }
+    function productos ()
+    {
+        return $this-> hasMany(Producto::Class);
+    }
 
     function cliente ()
     {
-        return $this-> belongsTo(Cliente::Class);
+        return $this-> belongsTo(Cliente::Class, 'cliente_id', 'identificacion');
     }
 
-    function customer ()
+    function customer()
     {
-        return $this-> belongsTo(User::Class);
+        return $this-> belongsTo(User::Class, 'customer_id', 'identificacion');
     }
 
     function articulos ()

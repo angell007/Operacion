@@ -21,10 +21,18 @@ class ServicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+     {
+         $this->middleware('auth');
+ 
+     }
+
+     
     public function index()
     {
         $servicios = Servicio::All();
-        // return view ('tablas.servicios',compact('servicios'));
+        return view ('servicio.index',compact('servicios'));
     }
 
     /**
@@ -34,16 +42,16 @@ class ServicioController extends Controller
      */
     public function create()
     {
-        $usuarios = User::All();
-        $clientes = Cliente::All();
-        $articulos = Articulo::All();
-        $productos = Producto::All();
-        $pendientes = ReazonPendiente::All();
+        $usuarios = User::All()->pluck('identificacion');
+        // $cliente = Cliente::All();
+        $articulos = Articulo::All()->pluck('serie');
+        $productos = Producto::All()->pluck('referencia');
+        $pendientes = ReazonPendiente::All()->pluck('nombre');
         $modos = ModoServicio::All();
         $tipos = TipooServicio::All();
         // $servicios = Servicio::All();
 
-        return view ('servicio.create', compact('tipos','modos','clientes','usuarios','articulos','productos','pendientes'));
+        return view ('servicio.create', compact('tipos','productos','modos','usuarios','articulos','pendientes'));
     }
 
     /**
@@ -105,5 +113,27 @@ class ServicioController extends Controller
     public function destroy(Servicio $servicio)
     {
         //
+    }
+
+    public function registro($id)
+    {   
+        $usuarios = User::All()->pluck('identificacion');
+        $productos = Producto::All()->pluck('referencia');
+        $articulos = Articulo::All()->pluck('serie');
+        $pendientes = ReazonPendiente::All()->pluck('nombre');
+        $modos = ModoServicio::All();
+        $tipos = TipooServicio::All();
+        $cliente = Cliente::where("identificacion" , decrypt($id))->firstOrFail();
+        return view('servicio.create', compact('tipos','modos', 'cliente', 'usuarios','articulos','productos','pendientes'));
+        
+        // dd($cliente->identificacion);
+        // decrypt(101)
+        // $cliente = Cliente::where("identificacion", 101)->first();
+        // dd( $cliente->identificacion);
+        // foreach ($cliente as $key => $value) {
+        //     echo "'$value[1]'";
+        // }
+        // if(!$cliente) abort(404);
+
     }
 }
