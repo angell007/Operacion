@@ -16,6 +16,15 @@
 </div>
 @endif
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 <div class="container">
         <div class="form-group col-md-12" style="background-color:#f3f3f3; font-size: 2.3rem;">
@@ -38,10 +47,26 @@
                     <input type="text" class="form-control" name="factura_id" placeholder="Faactura de Referencia">
                 </div>
     
-                <div class="form-group col-md-6">
-                    <label> Referencia de Proveedor </label>
-                    <input type="text" class="form-control" name="proveedor_id" placeholder="Referencia de Proveedor ">
-                </div>
+                @if (isset($proveedores))
+                    <div class="form-group col-md-6">
+                        <label>cod de proveedor </label>
+                        <select class="form-control" name="proveedor_id">
+                            <option disabled selected> Choose...</option>
+                            @foreach ($proveedores as $item)
+                            <option value="{{ $item }}">{{ $item }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                 @else
+
+        <div class="form-group col-md-6">
+                <label>cod de proveedor </label>
+                {{-- @if (isset ($proveedores))  --}}
+                    <input type="text" class="form-control" name="proveedor_id" >
+                {{-- @endif --}}
+        </div>
+        @endif
+
     
                 <div class="form-group col-md-6">
                     <label> Referencia </label>

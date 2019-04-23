@@ -7,6 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class Servicio extends Model
 {
 
+    protected $defaults = array(
+        'razon_pendiente_id' => 1 //valor por defecto
+    );
+
+    public function __construct(array $attributes = array()) {
+    $this->setRawAttributes($this->defaults, true);
+    parent::__construct($attributes);
+    }
+
     protected $fillable = [
 
         'producto_id',
@@ -34,14 +43,14 @@ class Servicio extends Model
         return $this-> hasMany(Producto::Class);
     }
 
-    function cliente ()
+    function cliente()
     {
-        return $this-> belongsTo(Cliente::Class, 'cliente_id', 'identificacion');
+        return $this-> belongsTo(Cliente::Class,'cliente_id','identificacion' );
     }
 
     function customer()
     {
-        return $this-> belongsTo(User::Class, 'customer_id', 'identificacion');
+        return $this-> belongsTo(User::Class,'customer_id','identificacion');
     }
 
     function articulos ()

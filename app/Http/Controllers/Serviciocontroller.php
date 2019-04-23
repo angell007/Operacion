@@ -11,6 +11,7 @@ use App\ReazonPendiente;
 use App\Articulo;
 use App\Producto;
 
+use Illuminate\Support\Facades\Validator;
 
 use Illuminate\Http\Request;
 
@@ -31,7 +32,7 @@ class ServicioController extends Controller
      
     public function index()
     {
-        $servicios = Servicio::All();
+        $servicios = Servicio::with('cliente','razonPendiente','customer')->get();
         return view ('servicio.index',compact('servicios'));
     }
 
@@ -42,16 +43,16 @@ class ServicioController extends Controller
      */
     public function create()
     {
+        
         $usuarios = User::All()->pluck('identificacion');
-        // $cliente = Cliente::All();
+        $clientes = Cliente::All()->pluck('identificacion');
         $articulos = Articulo::All()->pluck('serie');
         $productos = Producto::All()->pluck('referencia');
         $pendientes = ReazonPendiente::All()->pluck('nombre');
         $modos = ModoServicio::All();
         $tipos = TipooServicio::All();
-        // $servicios = Servicio::All();
 
-        return view ('servicio.create', compact('tipos','productos','modos','usuarios','articulos','pendientes'));
+        return view ('servicio.create', compact('tipos','clientes','productos','modos','usuarios','articulos','pendientes'));
     }
 
     /**
@@ -60,14 +61,27 @@ class ServicioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        try {
+            $validator = Validator::make($request->all(), [
+                'cliente_id' => 'required',
+                'customer_id' => 'required',
+                'fecha_inicio' => 'required',
+                'tipo_servicio_id' => 'required',
+                'modo_servicio_id' => 'required',
+            ]);
+     
+            if ($validator->fails()) {
+                            return back()
+                            ->withErrors($validator)
+                            ->withInput();
+            }          
             Servicio::create(request()->all());
-            return back()->with('success_msg','successfully saved');
-        } catch (QueryException $e) {
-            return back()->with('warning_msg','unsuccessfully saved'. $e->getMessage());
-        }
+            return  redirect()->route('servicio.index')->with('success_msg',' Exito ');
+
+            // return back()->with('success_msg','successfully saved');
+           
     }
 
     /**
@@ -87,9 +101,26 @@ class ServicioController extends Controller
      * @param  \App\Servicio  $servicio
      * @return \Illuminate\Http\Response
      */
-    public function edit(Servicio $servicio)
+    public function edit($id)
     {
-        //
+        $servicios = Servicio::findOrFail($id)->with('cliente',
+        'razonPendiente',
+        'customer',
+        'articulos',
+        // 'productos',
+        'modoServicio',
+        'tipoServicio'
+        )
+        ->get();
+
+        $usuarios = User::All()->pluck('identificacion');
+        $articulos = Articulo::All()->pluck('serie');
+        $productos = Producto::All()->pluck('referencia');
+        $pendientes = ReazonPendiente::All()->pluck('nombre');
+        $modos = ModoServicio::All();
+        $tipos = TipooServicio::All();
+        return view ('servicio.edit', compact('servicios', 'tipos','productos','modos','usuarios','articulos','pendientes'));
+
     }
 
     /**
@@ -99,9 +130,15 @@ class ServicioController extends Controller
      * @param  \App\Servicio  $servicio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Servicio $servicio)
+    public function update(Request $request, $id)
     {
-        //
+        try {
+            $servicio = Servicio::findOrfail($id);
+            $servicio-> update(request()->all());          
+            return  redirect()->route('servicio.index')->with('success_msg',' Exito ');
+        } catch (\Throwable $th) {
+            return back()->with('warning_msg','Error en Servicios '. $th->getMessage());
+        }
     }
 
     /**
@@ -110,9 +147,17 @@ class ServicioController extends Controller
      * @param  \App\Servicio  $servicio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Servicio $servicio)
+    public function destroy($id)
     {
-        //
+        try {
+            $Servicio = Servicio::findOrFail($id);
+            $Servicio->delete();
+            return back()->with('success_msg',' Exito ');
+        } catch (\Throwable $th) {
+            return back()->with('warning_msg','Error en Servicios '. $th->getMessage());
+        }
+
+     
     }
 
     public function registro($id)

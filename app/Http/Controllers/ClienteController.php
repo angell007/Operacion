@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Validator;
 
 use App\Cliente;
 use App\Cargo;
@@ -52,13 +53,29 @@ class ClienteController extends Controller
       */
      public function store(Request $request)
      {
-        
-        try {
-            Cliente::create(request()->all());
-            return back()->with('success_msg','successfully saved');
-        } catch (\Throwable $th) {
-            return back()->with('warning_msg','unsuccessfully saved'. $e->getMessage());
-        }
+        $validator = Validator::make($request->all(), [
+            'nombre' => 'required', 
+            'apellido' => 'required',
+            'sexo' => 'required', 
+            'email' => 'required', 
+            'tipo_identificacion' => 'required', 
+            'identificacion' => 'required',
+            'tipo_casa' => 'required',
+            'ciudad' => 'required',
+            'barrio' => 'required',
+            'direccion' => 'required',
+            'telefono' => 'required',
+            // 'telefono_opcional' => 'required',
+            'departamento' => 'required',  
+    ]);
+ 
+        if ($validator->fails()) {
+                        return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }          
+        Cliente::create(request()->all());
+          return back()->with('warning_msg','unsuccessfully saved'); 
 
     }
  

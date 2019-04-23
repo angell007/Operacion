@@ -19,7 +19,7 @@ class CreateClientesTable extends Migration
             $table->string('apellido');
             $table->string('sexo');
             $table->string('email');
-            $table->string('identificacion')->unique();
+            $table->unsignedInteger('identificacion')->unique();
             $table->string('tipo_identificacion');
             $table->string('ciudad');
             $table->string('departamento');

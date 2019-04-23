@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\EstadoPedido;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class EstadoPedidoController extends Controller
 {
@@ -49,13 +50,20 @@ class EstadoPedidoController extends Controller
        */
       public function store(Request $request)
       {
-         
-         try {
-             EstadoPedido::create(request()->all());
-             return back()->with('success_msg','successfully saved');
-         } catch (\Throwable $th) {
-             return back()->with('warning_msg','unsuccessfully saved'. $th->getMessage());
-         }
+        $validator = Validator::make($request->all(), [
+           
+            'nombre' => 'required',
+            'descripcion' => 'required'
+
+        ]);
+ 
+        if ($validator->fails()) {
+                        return back()
+                        ->withErrors($validator)
+                        ->withInput();
+                    }          
+                    EstadoPedido::create(request()->all());
+        return back()->with('success_msg','successfully saved');
  
      }
   

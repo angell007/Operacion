@@ -15,7 +15,7 @@ class CreateReazonPendientesTable extends Migration
     {
         Schema::create('reazon_pendientes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->string('descripcion');
             $table->timestamps();
         });

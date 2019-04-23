@@ -15,6 +15,15 @@
 </div>
 @endif
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 
 <div class="container">
     <div class="form-group col-md-12" style="background-color:#f3f3f3; font-size: 2.3rem;">
@@ -112,14 +121,26 @@
             </select>
         </div>
 
+        @if (isset($clientes))
         <div class="form-group col-md-6">
-            <label> identificacion de cliente </label>
-            @if (isset ($cliente))
-            <input type="text" class="form-control" name="cliente_id" value="{{ $cliente->identificacion }}">
-            @else
-            <input type="text" class="form-control" name="cliente_id" placeholder="identificacion de cliente ">
-            @endif
+            <label>identificacion de cliente </label>
+            <select class="form-control" name="cliente_id">
+                <option disabled selected> Choose...</option>
+                @foreach ($clientes as $item)
+                <option value="{{ $item }}">{{ $item }}</option>
+                @endforeach
+            </select>
         </div>
+        @else
+
+        <div class="form-group col-md-6">
+                <label>identificacion de cliente </label>
+                @if (isset ($cliente)) 
+                    <input type="text" class="form-control" name="cliente_id" value="{{ $cliente->identificacion }}">
+                @endif
+        </div>
+        @endif
+
 
         @if (isset($usuarios))
         <div class="form-group col-md-6">
@@ -145,7 +166,7 @@
 
         <div class="form-group col-md-6">
             <label> fecha inicio </label>
-            <input type="datetime-local" class="form-control" name="fecha_inicio" placeholder="fecha inicio ">
+            <input type="date" class="form-control" name="fecha_inicio" placeholder="fecha inicio ">
         </div>
 
         {{-- <div class="form-group col-md-6">
@@ -188,10 +209,10 @@
             <input type="number" class="form-control" name="valor_total" placeholder="valor total">
         </div>
 
-        <div class="form-group col-md-6">
+        {{-- <div class="form-group col-md-6">
             <label> ubicacion del producto </label>
             <input type="text" class="form-control" name="ubicacion_producto" placeholder="ubicacion del producto ">
-        </div>
+        </div> --}}
 
         <div class="form-group col-md-12">
             <label> reporte tecnico </label>

@@ -17,6 +17,17 @@
 @endif
 
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
 <div class="container">
         <div class="form-group col-md-12" style="background-color:#f3f3f3; font-size: 2.3rem;">
                 <table>

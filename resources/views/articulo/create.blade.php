@@ -16,6 +16,16 @@
 </div>
 @endif
 
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 
 <div class="container">
 
@@ -34,10 +44,27 @@
     <form action="{{ route('articulo.store') }}" method="POST">
         {{ csrf_field() }}
 
+        @if (isset($clientes))
         <div class="form-group col-md-6">
-            <label> Doumento del cliente </label>
-            <input type="text" class="form-control" name="cliente_id" placeholder="Doumento del cliente ">
+            <label>identificacion de cliente </label>
+            <select class="form-control" name="cliente_id">
+                <option disabled selected> Choose...</option>
+                @foreach ($clientes as $item)
+                <option value="{{ $item }}">{{ $item }}</option>
+                @endforeach
+            </select>
         </div>
+        @else
+
+        <div class="form-group col-md-6">
+                <label>identificacion de cliente </label>
+                @if (isset ($cliente)) 
+                    <input type="text" class="form-control" name="cliente_id" value="{{ $cliente->identificacion }}">
+                @endif
+        </div>
+        @endif
+
+
         <div class="form-group col-md-6">
             <label> Referencia de servicio </label>
             <input type="text" class="form-control" name="servicio_id" placeholder="Referencia de servicio">

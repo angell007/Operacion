@@ -15,7 +15,7 @@ class CreateModoServiciosTable extends Migration
     {
         Schema::create('modo_servicios', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('nombre');
+            $table->string('nombre')->unique();
             $table->string('descripcion');
             $table->timestamps();
         });

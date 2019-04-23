@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Articulo;
+use App\Cliente;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ArticuloController extends Controller
 {
@@ -36,8 +39,8 @@ class ArticuloController extends Controller
        */
       public function create()
       {
-         // $articulos = Articulo::all()->pluck('id','nombre');
-          return view('articulo.create');
+        $clientes = Cliente::All()->pluck('identificacion');
+        return view ('articulo.create', compact('clientes'));
   
       }
   
@@ -50,12 +53,31 @@ class ArticuloController extends Controller
       public function store(Request $request)
       {
          
-         try {
-             Articulo::create(request()->all());
-             return back()->with('success_msg','successfully saved');
-         } catch (\Throwable $th) {
-             return back()->with('warning_msg','unsuccessfully saved'. $th->getMessage());
-         }
+        $validator = Validator::make($request->all(), [
+            'cliente_id' => 'required',
+            'servicio_id' => 'required',
+            // 'serie_automatica' => 'required',,
+            'marca' => 'required',
+            'modelo' => 'required',
+            // 'serie' => 'required',,
+            'imei1' => 'required',
+            // 'ime2' => 'required',,
+            'almacen_compra' => 'required',
+            // 'numero_factura_compra' => 'required',,
+            // 'numero_vertificado_garantia' => 'required',,
+
+        ]);
+ 
+        if ($validator->fails()) {
+                        return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }          
+        Articulo::create(request()->all());
+        return back()->with('success_msg','successfully saved');
+
+        
+             
  
      }
   

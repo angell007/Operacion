@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\TipooServicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TipooServicioController extends Controller
 {
@@ -49,13 +50,20 @@ class TipooServicioController extends Controller
        */
       public function store(Request $request)
       {
-         
-         try {
-             TipooServicio::create(request()->all());
-             return back()->with('success_msg','successfully saved');
-         } catch (\Throwable $th) {
-             return back()->with('warning_msg','unsuccessfully saved'. $th->getMessage());
-         }
+        $validator = Validator::make($request->all(), [
+           
+            'nombre' => 'required|unique:reazon_pendientes',
+            'descripcion' => 'required'
+
+        ]);
+ 
+        if ($validator->fails()) {
+                        return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }          
+        TipooServicio::create(request()->all());
+        return back()->with('success_msg','successfully saved');
  
      }
   

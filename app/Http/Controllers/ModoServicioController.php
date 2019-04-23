@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ModoServicio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ModoServicioController extends Controller
 {
@@ -48,13 +49,22 @@ class ModoServicioController extends Controller
        */
       public function store(Request $request)
       {
-         
-         try {
-             ModoServicio::create(request()->all());
-             return back()->with('success_msg','successfully saved');
-         } catch (\Throwable $th) {
-             return back()->with('warning_msg','unsuccessfully saved'. $th->getMessage());
-         }
+        $validator = Validator::make($request->all(), [
+           
+            'nombre' => 'required',
+            'descripcion' => 'required'
+
+        ]);
+ 
+        if ($validator->fails()) {
+                        return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }          
+        ModoServicio::create(request()->all());
+        return back()->with('success_msg','successfully saved');
+ 
+        
  
      }
   

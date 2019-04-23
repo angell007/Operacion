@@ -37,6 +37,8 @@ class CreateServiciosTable extends Migration
             
             $table->foreign('customer_id')->references('identificacion')->on('users')->
             onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('cliente_id')->references('identificacion')->on('clientes')->
+            onDelete('cascade')->onUpdate('cascade');
         });
     }
 

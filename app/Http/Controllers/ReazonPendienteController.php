@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ReazonPendiente;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ReazonPendienteController extends Controller
 {
@@ -49,14 +50,20 @@ class ReazonPendienteController extends Controller
        */
       public function store(Request $request)
       {
-         
-         try {
-             ReazonPendiente::create(request()->all());
-             return back()->with('success_msg','successfully saved');
-         } catch (\Throwable $th) {
-             return back()->with('warning_msg','unsuccessfully saved'. $th->getMessage());
-         }
+        $validator = Validator::make($request->all(), [
+           
+            'nombre' => 'required|unique:reazon_pendientes',
+            'descripcion' => 'required'
+
+        ]);
  
+        if ($validator->fails()) {
+                        return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }          
+        ReazonPendiente::create(request()->all());
+        return back()->with('success_msg','successfully saved');
      }
   
       /**

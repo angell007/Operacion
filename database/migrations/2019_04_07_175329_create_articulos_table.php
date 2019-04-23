@@ -20,9 +20,9 @@ class CreateArticulosTable extends Migration
             $table->string('serie_automatica')->nullable();
             $table->string('marca');
             $table->string('modelo');
-            $table->string('serie');
-            $table->string('imei1');
-            $table->string('ime2');
+            $table->string('serie')->unique();
+            $table->string('imei1')->unique();
+            $table->string('ime2')->unique();
             $table->string('almacen_compra')->nullable();
             $table->string('numero_factura_compra')->nullable();
             $table->string('numero_vertificado_garantia')->nullable();

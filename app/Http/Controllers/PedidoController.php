@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Pedido;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PedidoController extends Controller
 {

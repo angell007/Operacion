@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Producto;
+use App\Proveedor;
+
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductoController extends Controller
 {
@@ -36,8 +39,8 @@ class ProductoController extends Controller
        */
       public function create()
       {
-         // $productos = Producto::all()->pluck('id','nombre');
-          return view('producto.create');
+        $proveedores = Proveedor::All()->pluck('id');
+        return view ('producto.create', compact('proveedores'));
   
       }
   
@@ -49,14 +52,23 @@ class ProductoController extends Controller
        */
       public function store(Request $request)
       {
-         
-         try {
-             Producto::create(request()->all());
-             return back()->with('success_msg','successfully saved');
-         } catch (\Throwable $th) {
-             return back()->with('warning_msg','unsuccessfully saved'. $th->getMessage());
-         }
+        $validator = Validator::make($request->all(), [
+            
+            'factura_id' => 'required',
+            'proveedor_id' => 'required',
+            'referencia' => 'required|unique:productos',
+            'descripcion' => 'required',
+            'costo_entrada' => 'required',
+            'cantidad'
+        ]);
  
+        if ($validator->fails()) {
+                        return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }          
+        Producto::create(request()->all());
+          return back()->with('success_msg','Exito'); 
      }
   
       /**

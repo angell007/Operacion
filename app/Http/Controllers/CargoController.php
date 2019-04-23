@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Illuminate\Database\QueryException;
+use Illuminate\Support\Facades\Validator;
 
 use App\Cargo;
 
@@ -50,13 +51,21 @@ class CargoController extends Controller
       */
      public function store(Request $request)
      {
-        
-        try {
-            Cargo::create(request()->all());
-            return back()->with('success_msg','successfully saved');
-        } catch (\Throwable $th) {
-            return back()->with('warning_msg','unsuccessfully saved'. $th->getMessage());
-        }
+        $validator = Validator::make($request->all(), [
+           
+            'nombre' => 'required|unique:cargos',
+            'descripcion' => 'required'
+
+        ]);
+ 
+        if ($validator->fails()) {
+                        return back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }          
+        Cargo::create(request()->all());
+        return back()->with('success_msg','successfully saved');
+       
 
     }
  
