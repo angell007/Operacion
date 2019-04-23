@@ -19,6 +19,6 @@
 <body>
     <h1>Error</h1>
     
-<a href="{{route ('Home') }}">Ir a Inicio </a>
+<a href="{{route ('home') }}">Ir a Inicio </a>
 </body>
 </html>

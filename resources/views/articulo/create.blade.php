@@ -67,7 +67,7 @@
 
         <div class="form-group col-md-6">
             <label> Referencia de servicio </label>
-            <input type="text" class="form-control" name="servicio_id" placeholder="Referencia de servicio">
+            <input type="number" class="form-control" name="servicio_id" placeholder="Referencia de servicio">
         </div>
 
         <div class="form-group col-md-6">

@@ -64,7 +64,7 @@ class CargoController extends Controller
                         ->withInput();
         }          
         Cargo::create(request()->all());
-        return back()->with('success_msg','successfully saved');
+        return  redirect()->route('cargo.index')->with('success_msg',' Exito ');
        
 
     }

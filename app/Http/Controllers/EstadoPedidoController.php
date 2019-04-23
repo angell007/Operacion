@@ -63,7 +63,7 @@ class EstadoPedidoController extends Controller
                         ->withInput();
                     }          
                     EstadoPedido::create(request()->all());
-        return back()->with('success_msg','successfully saved');
+                    return  redirect()->route('estado.index')->with('success_msg',' Exito ');
  
      }
   

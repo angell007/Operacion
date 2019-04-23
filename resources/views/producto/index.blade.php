@@ -55,7 +55,7 @@
                     <th scope="col">{{ $producto->factura_id}}</th>
                     <th scope="col">{{ $producto->proveedor_id}}</th>
                     <th scope="col">{{ $producto->referencia}} </th>
-                    <th scope="col">{{ $producto->desripcion}}</th>
+                    <th scope="col">{{ $producto->descripcion}}</th>
                     <th scope="col">{{ $producto->costo_entrada}}</th>
                     <th scope="col">{{ $producto->cantidad}}</th>
 

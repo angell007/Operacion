@@ -37,6 +37,31 @@
                     <label> nombre </label>
                     <input type="text" class="form-control" name="nombre" placeholder="nombre de proveedor">
                 </div>
+
+                <div class="form-group col-md-6">
+                        <label> nit </label>
+                        <input type="text" class="form-control" name="nit" placeholder="nit de proveedor">
+                </div>
+
+                <div class="form-group col-md-6">
+                        <label> direccion </label>
+                        <input type="text" class="form-control" name="direccion" placeholder="direccion de proveedor">
+                </div>
+
+                <div class="form-group col-md-6">
+                        <label> ciudad </label>
+                        <input type="text" class="form-control" name="ciudad" placeholder="ciudad de proveedor">
+                </div>
+
+                <div class="form-group col-md-6">
+                        <label> telefono </label>
+                        <input type="text" class="form-control" name="telefono" placeholder="telefono de proveedor">
+                </div>
+
+                <div class="form-group col-md-6">
+                        <label> telefono opcional </label>
+                        <input type="text" class="form-control" name="telefono_opcional" placeholder="telefono opcional de proveedor">
+                </div>
     
     
                 <div class="form-group col-md-12">

@@ -60,7 +60,7 @@ class ArticuloController extends Controller
             'marca' => 'required',
             'modelo' => 'required',
             // 'serie' => 'required',,
-            'imei1' => 'required',
+            // 'imei1' => 'required',
             // 'ime2' => 'required',,
             'almacen_compra' => 'required',
             // 'numero_factura_compra' => 'required',,
@@ -74,7 +74,7 @@ class ArticuloController extends Controller
                         ->withInput();
         }          
         Articulo::create(request()->all());
-        return back()->with('success_msg','successfully saved');
+        return  redirect()->route('articulo.index')->with('success_msg',' Exito ');
 
         
              

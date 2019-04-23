@@ -1,15 +1,17 @@
 <?php
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+// Route::get('registro', function () {
+// try {
+//     $razon = new  App\User;
+//     $razon->nombre ="Angell";
+//     $razon->email ="Angell@gmail.com";
+//     $razon->password =bcrypt("123");
+//     $razon->cargo_id ="Admin";
+//     $razon->saveOrFail();
+//     return back()->with('success_msg',' Exito ');
+// } catch (\Throwable $th) {
+//     return back()->with('warning_msg','Error en razones ');
+// }
+// });
 
 Route::get('/', function () {
     return view('welcome');

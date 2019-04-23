@@ -68,8 +68,8 @@ class ProductoController extends Controller
                         ->withInput();
         }          
         Producto::create(request()->all());
-          return back()->with('success_msg','Exito'); 
-     }
+        return  redirect()->route('producto.index')->with('success_msg',' Exito ');
+    }
   
       /**
        * Display the specified resource.

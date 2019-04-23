@@ -49,8 +49,9 @@ class ServicioController extends Controller
         $articulos = Articulo::All()->pluck('serie');
         $productos = Producto::All()->pluck('referencia');
         $pendientes = ReazonPendiente::All()->pluck('nombre');
-        $modos = ModoServicio::All();
-        $tipos = TipooServicio::All();
+        $modos = ModoServicio::select('nombre','id')->get();
+        // dd($modos);
+        $tipos = TipooServicio::select('nombre','id')->get();
 
         return view ('servicio.create', compact('tipos','clientes','productos','modos','usuarios','articulos','pendientes'));
     }
@@ -117,8 +118,8 @@ class ServicioController extends Controller
         $articulos = Articulo::All()->pluck('serie');
         $productos = Producto::All()->pluck('referencia');
         $pendientes = ReazonPendiente::All()->pluck('nombre');
-        $modos = ModoServicio::All();
-        $tipos = TipooServicio::All();
+        $modos = ModoServicio::All()->pluck('nombre');
+        $tipos = TipooServicio::All()->pluck('nombre');
         return view ('servicio.edit', compact('servicios', 'tipos','productos','modos','usuarios','articulos','pendientes'));
 
     }

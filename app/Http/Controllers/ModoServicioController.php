@@ -62,7 +62,7 @@ class ModoServicioController extends Controller
                         ->withInput();
         }          
         ModoServicio::create(request()->all());
-        return back()->with('success_msg','successfully saved');
+        return  redirect()->route('modo.index')->with('success_msg',' Exito ');
  
         
  

@@ -62,7 +62,7 @@
         </div>
         @endif --}} 
 
-        @if (isset($productos))
+        @if (isset($articulos))
         <div class="form-group col-md-6">
             <label>Referencia de articulo </label>
             <select class="form-control" name="articulo_id">
@@ -102,24 +102,46 @@
         </div>
         @endif --}}
 
+        @if (isset($modos))
+        {{-- {{  dd($modos->) }} --}}
         <div class="form-group col-md-6">
-            <label>tipo de servicio</label>
-            <select class="form-control" name="tipo_servicio_id">
-                <option> Choose...</option>
-                <option value="1">Tecnico</option>
-                <option value="2">Developer</option>
-                <option value="3">Diseñador</option>
+            <label>modo de servicios </label>
+            <select class="form-control" name="modo_servicio_id">
+                <option disabled selected> Choose...</option>
+                @foreach ($modos as $item)
+                <option value="{{ $item->id }}">{{ $item->nombre }}</option>
+                @endforeach
             </select>
         </div>
+        @else
 
         <div class="form-group col-md-6">
-            <label>modo de servicio</label>
-            <select class="form-control" name="modo_servicio_id">
-                <option> Choose...</option>
-                <option value="1">Domiciliario</option>
-                <option value="2">Garantia</option>
+            <label>modo de servicios </label>
+            <select class="form-control">
+                <option disabled selected> No hay modos </option>
             </select>
         </div>
+        @endif
+
+        @if (isset($tipos))
+        <div class="form-group col-md-6">
+            <label>tipo de servicios </label>
+            <select class="form-control" name="tipo_servicio_id">
+                <option disabled selected> Choose...</option>
+                @foreach ($tipos as $item)
+                <option value="{{ $item->id }}">{{ $item->nombre }}</option>
+                @endforeach
+            </select>
+        </div>
+        @else
+
+        <div class="form-group col-md-6">
+            <label>tipo de servicios </label>
+            <select class="form-control">
+                <option disabled selected> No hay Tipos </option>
+            </select>
+        </div>
+        @endif
 
         @if (isset($clientes))
         <div class="form-group col-md-6">

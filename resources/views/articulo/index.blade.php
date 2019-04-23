@@ -1,11 +1,13 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+        <link href="{{ asset('css/tableindex.css') }}" rel="stylesheet">
+
     <div class="panel panel-default">
         <div class="panel-heading">
-            <table class="table">
+            <table>
                 <tr class="form-group">
-                    <th scope="col">
+                    <th>
                         <h3> Articulos </h3>
                         <a class=" btn btn-info xs " href="{{ route('articulo.create') }}"> Add articulo </a>
                     </th>
@@ -35,46 +37,45 @@
         <em>{!! Session::get('warning_msg') !!}</em>
     </div>
     @endif
-    <table class="table">
+   
+    <table class="responstable">
         <thead>
-            <tr>
-                <th scope="col">cliente</th>
-                <th scope="col">ref de servicio </th>
-                <th scope="col">serie</th>
-                <th scope="col">marca</th>
-                <th scope="col">modelo</th>
-                <th scope="col">almacen</th>
-                <th scope="col"></th>
-                <th scope="col">Opciones</th>
+          <tr>
+            <th class="text  text-primary">Cliente          </th>
+            <th class="text  text-primary">Ref de servicio  </th>
+            <th class="text  text-primary">Serie            </th>
+            {{-- <th class="text  text-success">Articulos </th> --}}
+            <th class="text  text-primary">Marca            </th>
+            <th class="text  text-primary">Modelo           </th>
+            <th class="text  text-primary">Almacen          </th>
+            <th class="text  text-primary">Opcion           </th>
+            <th class="text  text-primary">Opcion           </th>
 
-            </tr>
+           </tr>
+      
         </thead>
         <tbody>
-
-            @foreach ($articulos as $articulo)
-            <tr>
-                <th scope="row">{{ $articulo->cliente_id }}</th>
-                <td> {{ $articulo->servicio_id}} </td>
-                <td> {{ $articulo->serie}} </td>
-                <td> {{ $articulo->marca}} </td>
-                <td> {{ $articulo->modelo }} </td>
-                <td> {{ $articulo->almacen_compra}} </td>
-
-                <td data-label="Opcion"><a class=" btn btn-info xs " href="{{ route('articulo.edit', $articulo->id) }}">
-                        Editar </a> </td>
-                <td>
-                    <div class="form-group">
-                        <form class="form-group" method="POST" action="{{ route ('articulo.destroy', $articulo->id) }}">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <button class=" btn btn-danger xs " type="submit">Eliminar</button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+      
+        @foreach ($articulos as $articulo)
+            <tr> 
+            <td data-label="Cliente"> {{ $articulo->cliente_id }}</td>
+            <td data-label="Ref de servicio">{{ $articulo->servicio_id}}</td>
+            <td data-label="Serie">{{ $articulo->serie}}</td>
+            <td data-label="Marca"> {{ $articulo->marca}} </td>
+            <td data-label="Modelo">{{ $articulo->modelo }}</td>
+            <td data-label="Almacen">{{ $articulo->almacen_compra}} </td>
+            <td data-label ="Opcion"><a class=" btn btn-info xs " href="{{ route('articulo.edit', $articulo->id)  }}">Gestionar  </a> </td>
+            <td data-label ="Opcion">
+                  <form   method="POST" action="{{ route ('articulo.destroy', $articulo->id)  }}">
+                      <input type="hidden" name="_method" value="DELETE">
+                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                      <button class=" btn btn-danger xs " type="submit">Eliminar</button>
+                  </form>
+            </td>  
+          </tr>
+      </tbody>
+      @endforeach 
+      </table>      
 </div>
 
 @endsection

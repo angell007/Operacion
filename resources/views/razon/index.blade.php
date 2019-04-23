@@ -1,9 +1,11 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+        <link href="{{ asset('css/tableindex.css') }}" rel="stylesheet">
+
     <div class="panel panel-default">
         <div class="panel-heading">
-            <table class="table">
+            <table >
                 <tr class="form-group">
                     <th scope="col">
                         <h3> Razones pendiente </h3>
@@ -35,38 +37,33 @@
         <em>{!! Session::get('warning_msg') !!}</em>
     </div>
     @endif
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col"> Descripcion </th>
-            </tr>
-        </thead>
-        <tbody>
-
-            @foreach ($razones as $razon)
-            <tr>
-                <td> {{ $razon->id}} </td>
-                <th scope="row">{{ $razon->nombre}}</th>
-                <td> {{ $razon->descripcion}} </td>
-
-
-                <td data-label="Opcion"><a class=" btn btn-info xs " href="{{ route('razon.edit', $razon->id) }}">
-                        Editar </a> </td>
-                <td>
-                    <div class="form-group">
-                        <form class="form-group" method="POST" action="{{ route ('razon.destroy', $razon->id) }}">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <button class=" btn btn-danger xs " type="submit">Eliminar</button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    <table class="responstable">
+            <thead>
+              <tr>
+                <th class="text  text-primary">Nombre           </th>
+                <th class="text  text-primary">Descripcion      </th>
+                <th class="text  text-primary">Opcion           </th>
+                <th class="text  text-primary">Opcion           </th>
+               </tr>
+            </thead>
+            <tbody>
+          
+        @foreach ($razones as $razon)
+                <tr> 
+                <td data-label="Nombre"> {{ $razon->nombre}}</td>
+                <td data-label="Descripcion">{{ $razon->descripcion}}</td>
+                <td data-label ="Opcion"><a class=" btn btn-info xs " href="{{ route('razon.edit', $razon->id) }}">Gestionar  </a> </td>
+                <td data-label ="Opcion">
+                      <form   method="POST" action="{{ route ('razon.destroy', $razon->id) }}">
+                          <input type="hidden" name="_method" value="DELETE">
+                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                          <button class=" btn btn-danger xs " type="submit">Eliminar</button>
+                      </form>
+                </td>  
+              </tr>
+          </tbody>
+        @endforeach 
+    </table>     
 </div>
 
 @endsection

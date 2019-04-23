@@ -53,8 +53,8 @@ class ProveedorController extends Controller
          
          try {
              Proveedor::create(request()->all());
-             return back()->with('success_msg','successfully saved');
-         } catch (\Throwable $th) {
+             return  redirect()->route('proveedor.index')->with('success_msg',' Exito ');
+            } catch (\Throwable $th) {
              return back()->with('warning_msg','unsuccessfully saved'. $th->getMessage());
          }
  

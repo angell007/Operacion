@@ -75,7 +75,7 @@ class ClienteController extends Controller
                         ->withInput();
         }          
         Cliente::create(request()->all());
-          return back()->with('warning_msg','unsuccessfully saved'); 
+        return  redirect()->route('cliente.index')->with('success_msg',' Exito ');
 
     }
  

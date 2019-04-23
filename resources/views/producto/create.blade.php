@@ -44,7 +44,7 @@
     
                 <div class="form-group col-md-6">
                     <label> Factura de referencia </label>
-                    <input type="text" class="form-control" name="factura_id" placeholder="Faactura de Referencia">
+                    <input type="number" class="form-control" name="factura_id" placeholder="Factura de Referencia" value="{{ old('email') }}">
                 </div>
     
                 @if (isset($proveedores))
@@ -62,7 +62,7 @@
         <div class="form-group col-md-6">
                 <label>cod de proveedor </label>
                 {{-- @if (isset ($proveedores))  --}}
-                    <input type="text" class="form-control" name="proveedor_id" >
+                    <input type="text" class="form-control" name="proveedor_id"  value="{{ old('email') }}">
                 {{-- @endif --}}
         </div>
         @endif
@@ -70,23 +70,23 @@
     
                 <div class="form-group col-md-6">
                     <label> Referencia </label>
-                    <input type="text" class="form-control" name="referencia" placeholder="Referencia">
+                    <input type="text" class="form-control" name="referencia" placeholder="Referencia" value="{{ old('referencia') }}">
                 </div>
     
                 
                 <div class="form-group col-md-6">
                     <label> Costo de entrada</label>
-                    <input type="number" class="form-control" name="costo_entrada" placeholder="Referencia de Proveedor ">
+                    <input type="number" class="form-control" name="costo_entrada" placeholder="Referencia de Proveedor " value="{{ old('costo_entrada') }}">
                 </div>
                 
                 <div class="form-group col-md-6">
                     <label>cantidad </label>
-                    <input type="number" class="form-control" name="cantidad" placeholder="cantidad ">
+                    <input type="number" class="form-control" name="cantidad" placeholder="cantidad " value="{{ old('cantidad') }}">
                 </div>
                 
                 <div class="form-group col-md-12">
                     <label> descripcion  </label>
-                <textarea  name="descripcion"  type="text" class="form-control">
+                <textarea  name="descripcion"  type="text" class="form-control" value="{{ old('descripcion') }}">
                 </textarea>
                 </div>
                 

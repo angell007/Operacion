@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+        <link href="{{ asset('css/tableindex.css') }}" rel="stylesheet">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <table class="table">
+            <table>
                 <tr class="form-group">
                     <th scope="col">
                         <h3> modos de Servicio </h3>
@@ -35,38 +36,36 @@
         <em>{!! Session::get('warning_msg') !!}</em>
     </div>
     @endif
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col"> Descripcion </th>
-            </tr>
-        </thead>
-        <tbody>
 
-            @foreach ($modos as $modo)
-            <tr>
-                <td> {{ $modo->id}} </td>
-                <th scope="row">{{ $modo->nombre}}</th>
-                <td> {{ $modo->descripcion}} </td>
+    <table class="responstable">
+            <thead>
+              <tr>
+                <th class="text  text-primary">Nombre           </th>
+                <th class="text  text-primary">Descripcion      </th>
+                <th class="text  text-primary">Opcion           </th>
+                <th class="text  text-primary">Opcion           </th>
+               </tr>
+            </thead>
+            <tbody>
+          
+        @foreach ($modos as $modo)
+                <tr> 
+                <td data-label="Nombre"> {{ $modo->nombre}}</td>
+                <td data-label="Descripcion">{{ $modo->descripcion}}</td>
+                <td data-label ="Opcion"><a class=" btn btn-info xs " href="{{ route('modo.edit', $modo->id) }}">Gestionar  </a> </td>
+                <td data-label ="Opcion">
+                      <form   method="POST" action="{{ route ('modo.destroy', $modo->id) }}">
+                          <input type="hidden" name="_method" value="DELETE">
+                          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                          <button class=" btn btn-danger xs " type="submit">Eliminar</button>
+                      </form>
+                </td>  
+              </tr>
+          </tbody>
+        @endforeach 
+    </table>     
 
-
-                <td data-label="Opcion"><a class=" btn btn-info xs " href="{{ route('modo.edit', $modo->id) }}">
-                        Editar </a> </td>
-                <td>
-                    <div class="form-group">
-                        <form class="form-group" method="POST" action="{{ route ('modo.destroy', $modo->id) }}">
-                            <input type="hidden" name="_method" value="DELETE">
-                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <button class=" btn btn-danger xs " type="submit">Eliminar</button>
-                        </form>
-                    </div>
-                </td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+   
 </div>
 
 @endsection

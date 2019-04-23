@@ -1,9 +1,10 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+        <link href="{{ asset('css/tableindex.css') }}" rel="stylesheet">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <table class="table">
+            <table >
                 <tr class="form-group">
                     <th scope="col">
                         <h3> Clientes</h3>
@@ -35,6 +36,8 @@
         <em>{!! Session::get('warning_msg') !!}</em>
     </div>
     @endif
+
+    
     <table class="table">
         <thead>
             <tr>
@@ -50,20 +53,18 @@
 
             @foreach ($clientes as $cliente)
             <tr>
-                <th scope="row">{{ $cliente->id }}</th>
-                <td> {{ $cliente->nombre .' '. $cliente->apellido }} </td>
-                <td> {{ $cliente->identificacion }} </td>
+                <td data-label="#"> {{ $cliente->id }}</td>
+                <td data-label="Nomnbre"> {{ $cliente->nombre .' '. $cliente->apellido }} </td>
+                <td data-label="Identificacion"> {{ $cliente->identificacion }} </td>
 
                 <td data-label="Opcion"><a class=" btn btn-info xs " href="{{ route('cliente.show', $cliente->id) }}">
                         Mostrar </a> </td>
-                <td>
-                    <div class="form-group">
-                        <form class="form-group" method="POST" action="{{ route ('cliente.destroy', $cliente->id) }}">
+                <td data-label="Opcion">
+                        <form method="POST" action="{{ route ('cliente.destroy', $cliente->id) }}">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <button class=" btn btn-danger xs " type="submit">Eliminar</button>
                         </form>
-                    </div>
                 </td>
             </tr>
             @endforeach

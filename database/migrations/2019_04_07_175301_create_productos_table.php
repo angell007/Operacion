@@ -17,7 +17,7 @@ class CreateProductosTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('factura_id');
             $table->unsignedInteger('proveedor_id');
-            $table->unsignedInteger('referencia')->unique();
+            $table->string('referencia')->unique();
             $table->text('descripcion');
             $table->text('costo_entrada');
             $table->text('cantidad');
