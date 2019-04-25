@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+        <link href="{{ asset('css/tableindex.css') }}" rel="stylesheet">
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3> Cliente</h3>
@@ -26,11 +27,11 @@
                     <table class="table">
                             <thead>
                               <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Identificacion</th>
-                                <th scope="col">Opciones</th>
-                                <th scope="col">Opciones</th>
+                                <th scope="col" >#</th>
+                                <th scope="col" >Nombre</th>
+                                <th scope="col" >Identificacion</th>
+                                <th scope="col" >Opciones</th>
+                                <th scope="col" data-label="Opc<ion">Opciones</th>
 
                               </tr>
                             </thead>
@@ -41,12 +42,12 @@
                                 @else --}}
 
                               <tr>
-                                  <th scope="row">{{ $cliente->id }}</th>
-                                  <td>  {{ $cliente->nombre .' '. $cliente->apellido }}   </td>
-                                  <td>  {{ $cliente->identificacion }}   </td>
+                                  <th scope="row" data-label="#">{{ $cliente->id }}</th>
+                                  <td data-label="Nombre" >  {{ $cliente->nombre .' '. $cliente->apellido }}   </td>
+                                  <td data-label="Identificacion">  {{ $cliente->identificacion }}   </td>
               
                                   <td data-label="Opcion"><a class = " btn btn-info xs " href="{{ route('registro', encrypt($cliente->identificacion )) }}"> Add Servicio </a> </td>
-                                  <td>
+                                  <td data-label="Opcion">
                                         <div class="form-group">
                                             <form  class="form-group" method = "POST" action="{{ route ('cliente.destroy', $cliente->id) }}">
                                                 <input type="hidden" name="_method" value="DELETE">

@@ -95,7 +95,7 @@ class ServicioController extends Controller
     {
         //
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
@@ -104,7 +104,7 @@ class ServicioController extends Controller
      */
     public function edit($id)
     {
-        $servicios = Servicio::findOrFail($id)->with('cliente',
+        $servicio = Servicio::where('id', decrypt($id))->with('cliente',
         'razonPendiente',
         'customer',
         'articulos',
@@ -120,7 +120,7 @@ class ServicioController extends Controller
         $pendientes = ReazonPendiente::All()->pluck('nombre');
         $modos = ModoServicio::All()->pluck('nombre');
         $tipos = TipooServicio::All()->pluck('nombre');
-        return view ('servicio.edit', compact('servicios', 'tipos','productos','modos','usuarios','articulos','pendientes'));
+        return view ('servicio.edit', compact('servicio', 'tipos','productos','modos','usuarios','articulos','pendientes'));
 
     }
 

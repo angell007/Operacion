@@ -47,20 +47,78 @@
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
                         @guest
-                            <li class="{{ActiveMenu ('login') }}"><a href="{{ route('login') }}">Login</a></li>
-                            <li class="{{ActiveMenu ('register') }}"><a href="{{ route('register') }}">Register</a></li>
-                            @else
-
-                                <li class="dropdown" >
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                            Servicios <span class="caret"></span>
-                                        </a>
-        
+                        <li class="{{ActiveMenu ('login') }}"><a href="{{ route('login') }}">Login</a></li>
+                        <li class="{{ActiveMenu ('register') }}"><a href="{{ route('register') }}">Register</a></li>
+                        @else
+                        
+                                                            <li class="dropdown">
+                                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                                                        Administracion <span class="caret"></span>
+                                                                    </a>
+                                    
+                                                                    <ul class="dropdown-menu">
+                                                                        <li>
+                                                                                <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('cargo.index') }}">
+                                                                                        <span class="material-icons"> widgets </span>
+                                                                                        cargo
+                                                                                 </a>
+                                                                        </li>
+                        
+                                                                        <li>
+                                                                                <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('estado.index') }}">
+                                                                                        <span class="material-icons"> widgets </span>
+                                                                                        estados de pedido
+                                                                                 </a>
+                                                                        </li>
+                        
+                                                                        <li>
+                                                                                <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('modo.index') }}">
+                                                                                        <span class="material-icons"> widgets </span>
+                                                                                        modos de servicio
+                                                                                 </a>
+                                                                        </li>
+                        
+                                                                        <li>
+                                                                                <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('producto.index') }}">
+                                                                                        <span class="material-icons"> widgets </span>
+                                                                                        productos
+                                                                                 </a>
+                                                                        </li>
+                        
+                                                                        <li>
+                                                                                <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('proveedor.index') }}">
+                                                                                        <span class="material-icons"> widgets </span>
+                                                                                        proveedores
+                                                                                 </a>
+                                                                        </li>
+                        
+                                                                        <li>
+                                                                                <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('razon.index') }}">
+                                                                                        <span class="material-icons"> widgets </span>
+                                                                                        razones
+                                                                                 </a>
+                                                                        </li>
+                        
+                                                                        <li>
+                                                                                <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('tipo.index') }}">
+                                                                                        <span class="material-icons"> widgets </span>
+                                                                                       tipos
+                                                                                 </a>
+                                                                        </li>
+                                                                        
+                                                                    </ul>
+                                                                </li>
+                        
+                        <li class="dropdown" >
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                Servicios <span class="caret"></span>
+                            </a>
+                            
                                         <ul class="dropdown-menu">
                                             <li>
                                                     <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('servicio.create') }}">
-                                                      <span class="material-icons"> add </span>
-                                                      Service
+                                                            <span class="material-icons"> widgets </span>
+                                                            Add Service
                                                     </a>
 
                                                     <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('servicio.index') }}">
@@ -72,64 +130,6 @@
                                         </ul>
                                     </li>
 
-                                    <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                                Administracion <span class="caret"></span>
-                                            </a>
-            
-                                            <ul class="dropdown-menu">
-                                                <li>
-                                                        <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('cargo.index') }}">
-                                                                <span class="material-icons"> widgets </span>
-                                                                cargo
-                                                         </a>
-                                                </li>
-
-                                                <li>
-                                                        <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('estado.index') }}">
-                                                                <span class="material-icons"> widgets </span>
-                                                                estados de pedido
-                                                         </a>
-                                                </li>
-
-                                                <li>
-                                                        <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('modo.index') }}">
-                                                                <span class="material-icons"> widgets </span>
-                                                                modos de servicio
-                                                         </a>
-                                                </li>
-
-                                                <li>
-                                                        <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('producto.index') }}">
-                                                                <span class="material-icons"> widgets </span>
-                                                                productos
-                                                         </a>
-                                                </li>
-
-                                                <li>
-                                                        <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('proveedor.index') }}">
-                                                                <span class="material-icons"> widgets </span>
-                                                                proveedores
-                                                         </a>
-                                                </li>
-
-                                                <li>
-                                                        <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('razon.index') }}">
-                                                                <span class="material-icons"> widgets </span>
-                                                                razones
-                                                         </a>
-                                                </li>
-
-                                                <li>
-                                                        <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('tipo.index') }}">
-                                                                <span class="material-icons"> widgets </span>
-                                                               tipos
-                                                         </a>
-                                                </li>
-                                                
-                                            </ul>
-                                        </li>
-
                                         <li class="dropdown">
                                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
                                                     Articulos <span class="caret"></span>
@@ -138,8 +138,8 @@
                                                 <ul class="dropdown-menu">
                                                     <li>
                                                             <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('articulo.create') }}">
-                                                              <span class="material-icons"> add </span>
-                                                              articulo
+                                                                    <span class="material-icons"> widgets </span>
+                                                                   add articulo
                                                             </a>
         
                                                             <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('articulo.index') }}">
@@ -159,8 +159,8 @@
                                             <ul class="dropdown-menu">
                                                 <li>
                                                         <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('cliente.index') }}">
-                                                          <span class="material-icons"> search </span>
-                                                          
+                                                                <span class="material-icons"> widgets </span>
+                                                          Gestiona
                                                         </a>
                                                 </li>
                                                 

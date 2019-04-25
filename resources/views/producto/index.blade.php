@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+        <link href="{{ asset('css/tableindex.css') }}" rel="stylesheet">
     <div class="panel panel-default">
         <div class="panel-heading">
             <table class="table">
@@ -35,7 +36,7 @@
         <em>{!! Session::get('warning_msg') !!}</em>
     </div>
     @endif
-    <table class="table">
+    <table class="responstable">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -45,23 +46,26 @@
                 <th scope="col">desripcion</th>
                 <th scope="col">costo de entrada </th>
                 <th scope="col">cantidad</th>
+                <th scope="col">Opcion</th>
+                <th scope="col">Opcion</th>
+
             </tr>
         </thead>
         <tbody>
 
             @foreach ($productos as $producto)
             <tr>
-                    <th scope="col">{{ $producto->id}}</th>
-                    <th scope="col">{{ $producto->factura_id}}</th>
-                    <th scope="col">{{ $producto->proveedor_id}}</th>
-                    <th scope="col">{{ $producto->referencia}} </th>
-                    <th scope="col">{{ $producto->descripcion}}</th>
-                    <th scope="col">{{ $producto->costo_entrada}}</th>
-                    <th scope="col">{{ $producto->cantidad}}</th>
+                    <td scope="col" data-label="#">{{ $producto->id}}</td>
+                    <td scope="col" data-label="factura ref ">{{ $producto->factura_id}}</td>
+                    <td scope="col" data-label="proveedor">{{ $producto->proveedor_id}}</td>
+                    <td scope="col" data-label="referencia">{{ $producto->referencia}} </td>
+                    <td scope="col" data-label="descripcion">{{ $producto->descripcion}}</td>
+                    <td scope="col" data-label="costo de entrada ">{{ $producto->costo_entrada}}</td>
+                    <td scope="col" data-label="cantidad">{{ $producto->cantidad}}</td>
 
-                <th scope="col" data-label="Opcion"><a class=" btn btn-info xs " href="{{ route('producto.edit', $producto->id) }}">
-                        Editar </a> </th>
-                <th scope="col">
+                <td scope="col" data-label="Opcion"><a class=" btn btn-info xs " href="{{ route('producto.edit', $producto->id) }}">
+                        Editar </a> </td>
+                <td scope="col" data-label="Opcion">
                     <div class="form-group">
                         <form class="form-group" method="POST" action="{{ route ('producto.destroy', $producto->id) }}">
                             <input type="hidden" name="_method" value="DELETE">
@@ -69,7 +73,7 @@
                             <button class=" btn btn-danger xs " type="submit">Eliminar</button>
                         </form>
                     </div>
-                </th>
+                </td>
             </tr>
             @endforeach
         </tbody>

@@ -43,7 +43,7 @@
 
     </div>
 
-    @foreach ($servicios as $servicio)
+    @foreach ($servicio as $servicio)
 
     <form action="{{ route('servicio.update', $servicio->id) }}" method="POST">
         {!!method_field('PUT')!!}

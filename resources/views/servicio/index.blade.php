@@ -65,7 +65,7 @@
                 @else
                 <td data-label="Fecha de reparado ">   sin fecha </td>
                 @endif
-                <td data-label ="Opcion"><a class=" btn btn-info xs " href="{{ route('servicio.edit', $servicio->id) }}">Gestionar  </a> </td>
+                <td data-label ="Opcion"><a class=" btn btn-info xs " href="{{ route('servicio.edit',encrypt( $servicio->id)) }}">Gestionar {{ $servicio->id}}  </a> </td>
               <td data-label ="Opcion">
                   {{-- <div class="form-group"> --}}
                       <form  method="POST" action="{{ route ('servicio.destroy', $servicio->id) }}">
