@@ -31,14 +31,14 @@
             <tr>
                 <th class="text text-default">
                     <span>
-                        Servicio!!
+                       Welcome to technical Service!!
                     </span>
                 </th>
             </tr>
         </table>
     </div>
 
-    <form action="{{ route('servicio.store') }}" method="POST">
+    <form action="{{ route('tecnico') }}" method="POST">
         {{ csrf_field() }}
 
         {{-- @if (isset($productos))
@@ -62,6 +62,166 @@
         </div>
         @endif --}} 
 
+        <div class="form-group col-md-12" style="background-color:#f3f3f3; font-size: 1.3rem;">
+            <table>
+                <tr>
+                    <th class="text text-default">
+                        <span>
+                           cliente section!!
+                        </span>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+            <div class="form-group col-md-6">
+                <label> Nombres </label>
+                <input type="text" class="form-control" name="nombre" placeholder="Name">
+            </div>
+            <div class="form-group col-md-6">
+                <label>Apellidos </label>
+                <input type="text" class="form-control" name="apellido" placeholder="Last Name">
+            </div>
+    
+            <div class="form-group col-md-6">
+                <label>Mail </label>
+                <input type="email" class="form-control" name="email" placeholder="E-mail">
+            </div>
+    
+            <div class="form-group col-md-6">
+                    <label> Sexo </label>
+                    <select class="form-control" name="sexo"  >
+                        <option disabled selected> Choose...</option>
+                        <option value="Hombre">Hombre</option>
+                        <option value="Mujer">Mujer</option>
+                        <option value="Otro">Otro</option>
+        
+                    </select>
+                </div>
+    
+            <div class="form-group col-md-6">
+                <label>Tipo de Identificación</label>
+                <select class="form-control" name="tipo_identificacion">
+                    <option> Choose...</option>
+                    <option value="1">Cedula</option>
+                    <option value="2">Passport</option>
+                    <option value="3">Otro</option>
+                </select>
+            </div>
+    
+            <div class="form-group col-md-6">
+                <label>Numero de Identificacion</label>
+                <input type="number" class="form-control" name="identificacion" placeholder="text">
+            </div>
+    
+            <div class="form-group col-md-6">
+                <label>Ciudad</label>
+                <input type="text" class="form-control" name="ciudad" placeholder="text">
+            </div>
+    
+            <div class="form-group col-md-6">
+                <label>Departamento</label>
+                <input type="text" class="form-control" name="departamento" placeholder="text">
+            </div>
+    
+            <div class="form-group col-md-6">
+                <label>Dirección</label>
+                <input type="text" class="form-control" name="direccion" placeholder="text">
+            </div>
+    
+            <div class="form-group col-md-6">
+                <label>Tipo de Vivienda </label>
+                <select class="form-control" name="tipo_casa"  >
+                    <option disabled selected> Choose...</option>
+                    <option value="Casa">Casa</option>
+                    <option value="Apartamento">Apartamento</option>
+                    <option value="Edificio">Edificio</option>
+    
+                </select>
+            </div>
+    
+            <div class="form-group col-md-6">
+                <label>Barrio</label>
+                <input type="text" class="form-control" name="barrio" placeholder="Barrio">
+            </div>
+    
+            <div class="form-group col-md-6">
+                <label>Telefono</label>
+                <input type="phone" class="form-control" name="telefono" placeholder="phone">
+            </div>
+    
+            <div class="form-group col-md-6">
+                <label>Telefono (opcional)</label>
+                <input type="phone" class="form-control" name="opcional_telefono" placeholder="phone(opcional)">
+            </div>
+    
+
+            <div class="form-group col-md-12" style="background-color:#f3f3f3; font-size: 1.3rem;">
+                <table>
+                    <tr>
+                        <th class="text text-default">
+                            <span>
+                               article section!!
+                            </span>
+                        </th>
+                    </tr>
+                </table>
+            </div>
+    
+        <div class="form-group col-md-6">
+            <label> marca </label>
+            <input type="text" class="form-control" name="marca" placeholder="marca">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label> modelo </label>
+            <input type="text" class="form-control" name="modelo" placeholder="modelo">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label> serie </label>
+            <input type="text" class="form-control" name="serie" placeholder="serie">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label> imei </label>
+            <input type="text" class="form-control" name="imei1" placeholder="imei">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label> imei2 </label>
+            <input type="text" class="form-control" name="ime2" placeholder="ime2">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label> almacen de Procedencia </label>
+            <input type="text" class="form-control" name="almacen_compra" placeholder="almacen de Procedencia">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label> numero de factura de procedencia </label>
+            <input type="text" class="form-control" name="numero_factura_compra"
+                placeholder="numero de factura de procedencia">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label> numero de garantia </label>
+            <input type="text" class="form-control" name="numero_vertificado_garantia" placeholder="numero de garantia">
+        </div>
+
+        <div class="form-group col-md-12" style="background-color:#f3f3f3; font-size: 1.3rem;">
+            <table>
+                <tr>
+                    <th class="text text-default">
+                        <span>
+                           service section!!
+                        </span>
+                    </th>
+                </tr>
+            </table>
+        </div>
+
+    
         {{-- @if (isset($articulos))
         <div class="form-group col-md-6">
             <label>Referencia de articulo </label>
@@ -140,26 +300,6 @@
             <select class="form-control">
                 <option disabled selected> No hay Tipos </option>
             </select>
-        </div>
-        @endif
-
-        @if (isset($clientes))
-        <div class="form-group col-md-6">
-            <label>identificacion de cliente </label>
-            <select class="form-control" name="cliente_id">
-                <option disabled selected> Choose...</option>
-                @foreach ($clientes as $item)
-                <option value="{{ $item }}">{{ $item }}</option>
-                @endforeach
-            </select>
-        </div>
-        @else
-
-        <div class="form-group col-md-6">
-                <label>identificacion de cliente </label>
-                @if (isset ($cliente)) 
-                    <input type="text" class="form-control" name="cliente_id" value="{{ $cliente->identificacion }}">
-                @endif
         </div>
         @endif
 

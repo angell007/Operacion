@@ -185,12 +185,14 @@
         </div>
 
         @endif
+        {{-- {{ dd($servicio->articulo->articulo_id) }} --}}
 
-        @if (isset( $servicio->articulo->serie))
+        @if (isset( $servicio->articulo_id))
         <div class="form-group col-md-6">
             <label>Referencia de articulo </label>
+            {{-- {{ dd($servicio->articulo) }} --}}
             <select class="form-control" name="articulo_id">
-                <option value="{{ $servicio->articulo->serie }}">{{ $servicio->articulo->serie }}</option>
+                <option value="{{ $servicio->articulo_id }}">{{ $servicio->articulo_id }}</option>
                 @foreach ($articulos as $item)
                 <option value="{{ $item }}">{{ $item }}</option>
                 @endforeach
@@ -200,7 +202,7 @@
 
         <div class="form-group col-md-6">
             <label>Referencia de articulo </label>
-            <select class="form-control">
+            <select class="form-control" name="articulo_id">
                 <option disabled selected> No hay articulo </option>
                 @foreach ($articulos as $item)
                 <option value="{{ $item }}">{{ $item }}</option>

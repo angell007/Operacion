@@ -55,7 +55,7 @@ class Servicio extends Model
 
     function articulos ()
     {
-        return $this-> hasMany(Articulo::Class);
+        return $this-> hasMany(Articulo::Class, 'serie', 'articulo_id');
     }
 
     function razonPendiente ()

@@ -65,7 +65,6 @@ class ClienteController extends Controller
             'barrio' => 'required',
             'direccion' => 'required',
             'telefono' => 'required',
-            // 'telefono_opcional' => 'required',
             'departamento' => 'required',  
     ]);
  

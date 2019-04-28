@@ -7,6 +7,17 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
 
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
+            
                 <div class="panel-body">
                     <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
@@ -26,18 +37,18 @@
                         </div>
 
                         <div class="form-group{{ $errors->has('identificacion') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">Identificacion </label>
-    
-                                <div class="col-md-6">
-                                    <input id="name" type="text" class="form-control" name="identificacion" value="{{ old('identificacion') }}" required autofocus>
-    
-                                    @if ($errors->has('identificacion'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
+                            <label for="identificacion" class="col-md-4 control-label">identificacion</label>
+
+                            <div class="col-md-6">
+                                <input id="identificacion" type="text" class="form-control" name="identificacion" value="{{ old('identificacion') }}" required autofocus>
+
+                                @if ($errors->has('identificacion'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('identificacion') }}</strong>
+                                    </span>
+                                @endif
                             </div>
+                        </div>
 
 
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

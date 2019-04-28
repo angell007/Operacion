@@ -13,7 +13,7 @@
                     </th>
                 </tr>
             </table>
-            <div class="panel-body">
+            {{-- <div class="panel-body">
                 <form action="{{route ('search')}}" method="POST">
                     {{ csrf_field() }}
                     <div class="form-group">
@@ -21,7 +21,7 @@
                         <input type="submit" class="btn btn-primary xs" value="Buscar">
                     </div>
                 </form>
-            </div>
+            </div> --}}
         </div>
     </div>
     @if (Session::has('success_msg'))

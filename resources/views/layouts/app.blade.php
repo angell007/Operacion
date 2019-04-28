@@ -121,9 +121,14 @@
                                                             Add Service
                                                     </a>
 
+                                                    <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('tecnico') }}">
+                                                        <span class="material-icons"> widgets </span>
+                                                        Add Service technical
+                                                    </a>
+
                                                     <a class="dropdown-item " style="font-size: 15px;" title="Crear" href="{{  route('servicio.index') }}">
                                                             <span class="material-icons"> widgets </span>
-                                                            Service
+                                                            Services
                                                      </a>
                                             </li>
                                             

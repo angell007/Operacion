@@ -46,14 +46,29 @@ class ServicioController extends Controller
         
         $usuarios = User::All()->pluck('identificacion');
         $clientes = Cliente::All()->pluck('identificacion');
-        $articulos = Articulo::All()->pluck('serie');
-        $productos = Producto::All()->pluck('referencia');
+        // $articulos = Articulo::All()->pluck('serie');
+        // $productos = Producto::All()->pluck('referencia');
         $pendientes = ReazonPendiente::All()->pluck('nombre');
         $modos = ModoServicio::select('nombre','id')->get();
         // dd($modos);
         $tipos = TipooServicio::select('nombre','id')->get();
 
         return view ('servicio.create', compact('tipos','clientes','productos','modos','usuarios','articulos','pendientes'));
+    }
+
+    public function tecnico()
+    {
+        
+        $usuarios = User::All()->pluck('identificacion');
+        $clientes = Cliente::All()->pluck('identificacion');
+        $articulos = Articulo::All()->pluck('serie');
+        // $productos = Producto::All()->pluck('referencia');
+        $pendientes = ReazonPendiente::All()->pluck('nombre');
+        $modos = ModoServicio::select('nombre','id')->get();
+        // dd($modos);
+        $tipos = TipooServicio::select('nombre','id')->get();
+
+        return view ('servicio.tecnico', compact('tipos','clientes','productos','modos','usuarios','articulos','pendientes'));
     }
 
     /**
@@ -85,6 +100,90 @@ class ServicioController extends Controller
            
     }
 
+
+    public function technical(Request $request)
+    {
+            $validator = Validator::make($request->all(), [
+                'nombre' => 'required', 
+                'apellido' => 'required',
+                'sexo' => 'required', 
+                'email' => 'required', 
+                'tipo_identificacion' => 'required', 
+                'identificacion' => 'required',
+                'tipo_casa' => 'required',
+                'ciudad' => 'required',
+                'barrio' => 'required',
+                'direccion' => 'required',
+                'telefono' => 'required',
+                'departamento' => 'required',
+                'customer_id' => 'required',
+                'fecha_inicio' => 'required',
+                'tipo_servicio_id' => 'required',
+                'modo_servicio_id' => 'required',
+                'marca' => 'required',
+                'modelo' => 'required',
+                'reporte_tecnico',
+                'marca',          
+                'modelo',             
+                'serie',        
+                'imei1',         
+                'ime2',        
+                'almacen_compra',           
+                'numero_factura_compra',       
+                'numero_vertificado_garantia',         
+             
+              
+            ]);
+     
+            if ($validator->fails()) {
+                            return back()
+                            ->withErrors($validator)
+                            ->withInput();
+            }  
+
+            try {
+                DB::transaction(function () {
+                    // DB::table('users')->update(['votes' => 1]);
+                
+                    // DB::table('posts')->delete();
+                    
+                    $cliente = Cliente::create(request()->all());
+                    
+                    $servicio = Servicio::create([
+                        'cliente_id'=> $cliente->id,             
+                        'modo_servicio_id'=>$request['modo_servicio_id'],             
+                        'tipo_servicio_id'=>$request['tipo_servicio_id'],             
+                        'fecha_inicio'=>$request['fecha_inicio'],
+                        'reporte_tecnico'=>$request['reporte_tecnico'],
+                        
+                        ]);
+                        
+                        Articulo::create([
+                            'cliente_id'=> $request['identificacion'],             
+                            'servicio_id'=> $servicio->id,             
+                            'marca'=>$request['marca'],             
+                            'modelo'=>$request['modelo'],             
+                            'serie'=>$request['serie'],         
+                            'imei1'=>$request['imei1'],         
+                            'ime2'=>$request['ime2'],         
+                            'almacen_compra'=>$request['almacen_compra'],             
+                            'numero_factura_compra'=>$request['numero_factura_compra'],         
+                            'numero_vertificado_garantia'=>$request['numero_vertificado_garantia'],           
+                            ]);
+                            
+                            // return  redirect()->route('servicio.index')->with('success_msg','exito');
+                        });
+
+            } catch (\Throwable $th) {
+                return  redirect()->route('servicio.index')->with('success_msg',$th);
+            }
+            // Cliente::create(request()->all());
+            // return  redirect()->route('servicio.index')->with('success_msg',' Exito ');
+
+            // // return back()->with('success_msg','successfully saved');
+           
+    }
+
     /**
      * Display the specified resource.
      *
@@ -113,7 +212,6 @@ class ServicioController extends Controller
         'tipoServicio'
         )
         ->get();
-
         $usuarios = User::All()->pluck('identificacion');
         $articulos = Articulo::All()->pluck('serie');
         $productos = Producto::All()->pluck('referencia');

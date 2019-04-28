@@ -21,6 +21,9 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/servicio','ServicioController');
+Route::get('/servicio/create/tecnico','ServicioController@tecnico')->name('tecnico');
+Route::post('/servicio/create/tecnico','ServicioController@technical')->name('tecnico');
+
 Route::resource('/cliente','ClienteController');
 Route::resource('/user','UserController');
 Route::resource('/articulo','ArticuloController');
@@ -35,3 +38,7 @@ Route::resource('/factura','FacturaController');
 Route::resource('/producto','ProductoController');
 Route::get('/{id?}','ServicioController@registro')->name('registro');
 Route::post('/search','ClienteController@buscar')->name('search');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
