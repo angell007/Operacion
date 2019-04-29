@@ -116,7 +116,6 @@ class ArticuloController extends Controller
       {
          try {
              $articulos =   Articulo::findOrFail($Articulo->id);
-            //  dd($articulos);
              return  view('articulo.edit',compact('articulos'));
          } catch (\Throwable $th) {
              return back()->with('warning_msg','Error en Articulos '. $th->getMessage());
@@ -130,12 +129,20 @@ class ArticuloController extends Controller
        * @param  \App\Articulo  $Articulo
        * @return \Illuminate\Http\Response
        */
-      public function update(Request $request, Articulo $Articulo)
+      public function update(Request $request, Articulo $articulo)
       {
-         try {
-            $Articulo = Articulo::findOrFail($Articulo->id);
-            $Articulo -> update(request()->all());
-            // $servicio = $Articulo->servicio;
+          try {
+              $article = Articulo::findOrFail($articulo->id);
+              $article->marca= $request->marca;
+              $article->modelo= $request->modelo;
+              $article->serie= $request->serie;
+              $article->imei1= $request->imei1;
+              $article->ime2= $request->ime2;
+              $article->tipo= $request->tipo;
+              $article->almacen_compra= $request->almacen_compra;
+              $article->numero_factura_compra= $request->numero_factura_compra;
+              $article->numero_vertificado_garantia= $request->numero_vertificado_garantia;
+              $article->saveOrFail();
             return  redirect()->route('articulo.index');
          } catch (\Throwable $th) {
              return back()->with('warning_msg','Error en Articulos '. $th->getMessage());
@@ -173,7 +180,7 @@ class ArticuloController extends Controller
           $articulos = "";
           switch ($request->filtro) {
               case 'Tipo':
-              $articulos = Articulo::Tipo($request->id)->get();
+              $articulos = Articulo::Type($request->id)->get();
               break;
               case 'Modelo':
               $articulos = Articulo::Modelo($request->id)->get();

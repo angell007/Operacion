@@ -72,9 +72,9 @@
             <label>Tipo de Identificación</label>
             <select class="form-control" name="tipo_identificacion">
                 <option> Choose...</option>
-                <option value="1">Cedula</option>
-                <option value="2">Passport</option>
-                <option value="3">Otro</option>
+                <option value="Cedula">Cedula</option>
+                <option value="Passport">Passport</option>
+                <option value="Otro">Otro</option>
             </select>
         </div>
 

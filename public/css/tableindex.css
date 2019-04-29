@@ -2,7 +2,7 @@
 /* @import url(/public/css/Roboto.css); */
 
 tr:nth-of-type(odd) { 
-	/* background-color: rgb(245, 250, 255); */
+	background-color: rgb(255, 254, 254);
 }
 
 th { 
@@ -37,7 +37,7 @@ td, th {
 	  
 	  table tr {
 			/* background-color: rgb(245, 250, 255); */
-			border: 1px solid rgb(250, 242, 242);
+			border: 1px solid rgb(202, 202, 202);
 		padding: .35em;
 	  }
 	  
@@ -73,7 +73,8 @@ td, th {
 		  overflow: hidden;
 		  padding: 0;
 		  position: absolute;
-		  width: 1px;
+			width: 1px;
+			justify-content: center;
 		}
 		
 		table tr {
@@ -86,7 +87,7 @@ td, th {
 		  border-bottom: 1px solid #ddd;
 		  display: block;
 		  font-size: .8em;
-		  /* text-align: right; */
+		  text-align: right;
 		}
 		
 		table td::before {
@@ -109,8 +110,9 @@ tr:nth-child(odd) td {
 	/* background-color: rgb(245, 250, 255); */
 }
  
-/* tr:nth-child(odd):hover td {
-} */
+tr:nth-child(odd):hover td {
+		background-color: rgb(245, 245, 245);
+}
 
 
 tr:hover td {
