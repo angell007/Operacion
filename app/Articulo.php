@@ -30,7 +30,7 @@ class Articulo extends Model
        return $this-> belongsTo(Servicio::Class);
    }
 
-    public function scopeTipo($query, $tipo){
+    public function scopeType($query, $tipo){
     return $query->where('tipo','like','%'.$tipo.'%');
     }
 

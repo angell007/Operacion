@@ -132,7 +132,7 @@
 
         <div class="form-group col-md-6">
             <label>identificacion de cliente </label>
-            <select class="form-control">
+            <select class="form-control" name="cliente_id">
                 <option> No hay cliente </option>
             </select>
         </div>
@@ -153,7 +153,7 @@
 
         <div class="form-group col-md-6">
             <label>identificacion de customer </label>
-            <select class="form-control">
+            <select class="form-control" name="customer_id">
                 <option> No hay customer </option>
                 @foreach ($usuarios as $item)
                 <option value="{{ $item }}">{{ $item }}</option>
@@ -187,7 +187,7 @@
         @else
         <div class="form-group col-md-6">
             <label>Referencia de producto </label>
-            <select class="form-control">
+            <select class="form-control" name="producto_id">
                 <option> No hay Productos </option>
             </select>
         </div>
@@ -261,7 +261,7 @@
 
         @if (isset($servicio->valor_asegurado_producto))
         <div class="form-group col-md-6">
-            <label>valor de valor asegurado producto </label>
+            <label>valor  asegurado producto </label>
             <input type="number" class="form-control" name="valor_asegurado_producto" placeholder="valor mano de obra"
                 value="{{ $servicio->valor_asegurado_producto }}">
         </div>

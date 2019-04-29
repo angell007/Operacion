@@ -17,7 +17,7 @@ class UserController extends Controller
      {
          $users = User::orderBy('id','Desc')->get();
          // $selects = User::list();
-         return view('forms/user.users', compact('users'));
+         return view('user.index', compact('users'));
      }
  
      /**
@@ -105,7 +105,6 @@ class UserController extends Controller
      {
          $user = User::findOrFail($user->id);
          $user->delete();
-         flash()->success('Operacion Sistemica', 'User successfully delete.');     
          return redirect()->back();
      }
 }

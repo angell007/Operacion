@@ -61,14 +61,14 @@
         <thead>
           <tr>
             {{-- <th class="text  text-primary">Cliente          </th> --}}
-            <th class="text  text-primary">Ref de servicio  </th>
-            <th class="text  text-primary">Serie            </th>
-            {{-- <th class="text  text-success">Articulos </th> --}}
-            <th class="text  text-primary">Marca            </th>
-            <th class="text  text-primary">Modelo           </th>
-            <th class="text  text-primary">Almacen          </th>
-            <th class="text  text-primary">Opcion           </th>
-            <th class="text  text-primary">Opcion           </th>
+            {{-- <th class="text  text-primary">Ref de servicio  </th> --}}
+            <th class="text  text-default">Serie            </th>
+            <th class="text  text-default">Marca            </th>
+            <th class="text  text-default">Modelo           </th>
+            <th class="text  text-default">tipo             </th>
+            <th class="text  text-default">Almacen          </th>
+            <th class="text  text-default">Opcion           </th>
+            <th class="text  text-default">Opcion           </th>
 
            </tr>
       
@@ -78,10 +78,11 @@
         @foreach ($articulos as $articulo)
             <tr> 
             {{-- <td data-label="Cliente"> {{ $articulo->cliente_id }}</td> --}}
-            <td data-label="Ref de servicio">{{ $articulo->servicio_id}}</td>
+            {{-- <td data-label="Ref de servicio">{{ $articulo->servicio_id}}</td> --}}
             <td data-label="Serie">{{ $articulo->serie}}</td>
             <td data-label="Marca"> {{ $articulo->marca}} </td>
             <td data-label="Modelo">{{ $articulo->modelo }}</td>
+            <td data-label="Tipo">{{ $articulo->tipo}}</td>
             <td data-label="Almacen">{{ $articulo->almacen_compra}} </td>
             <td data-label ="Opcion"><a class=" btn btn-info xs " href="{{ route('articulo.edit', $articulo->id)  }}">Gestionar  </a> </td>
             <td data-label ="Opcion">

@@ -57,7 +57,11 @@
                       <form   method="POST" action="{{ route ('razon.destroy', $razon->id) }}">
                           <input type="hidden" name="_method" value="DELETE">
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                          @if($razon->id==1)
+                          @else 
                           <button class=" btn btn-danger xs " type="submit" onclick="return confirm(' ¿Esta seguro que desea eiminar esta razon pendiente ?')">Eliminar</button>
+                          @endif
+                          
                       </form>
                 </td>  
               </tr>

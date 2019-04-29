@@ -44,22 +44,6 @@
     <form action="{{ route('articulo.store') }}" method="POST">
         {{ csrf_field() }}
 
-      
-
-{{-- 
-        @if (isset($servicios))
-        <div class="form-group col-md-6">
-            <label> Referencia de servicio </label>
-            <select class="form-control" name="servicio_id">
-                <option disabled selected> Choose...</option>
-                @foreach ($servicios as $item)
-                <option value="{{ $item }}">{{ $item }}</option>
-                @endforeach
-            </select>
-        </div>
-        @else
-
-        @endif --}}
         
 <input type="hidden"  name="servicio_id"  value="{{ $servicio->id }}">
   <div class="form-group col-md-6">
@@ -70,6 +54,18 @@
         <div class="form-group col-md-6">
             <label> modelo </label>
             <input type="text" class="form-control" name="modelo" placeholder="modelo">
+        </div>
+
+        <div class="form-group col-md-6">
+            <label>Tipo de Articulo</label>
+            <select class="form-control" name="tipo">
+                <option> Choose...</option>
+                <option value="movil">movil</option>
+                <option value="table">table</option>
+                <option value="pc de mesa">pc de mesa</option>
+                <option value="pc portatil">pc portatil</option>
+                <option value="otro">otro</option>
+            </select>
         </div>
 
         <div class="form-group col-md-6">

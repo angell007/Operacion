@@ -3,18 +3,32 @@
 
 <div class="container">
   <link href="{{ asset('css/tableindex.css') }}" rel="stylesheet">
+  <div class="">
+      <div class="">
+         
+           
+          <table class="respontable">
+              <tr class="">
+                <td>
+                    <h3>
+                        Servicio!!   
+                     </h3>
+                </td>
+                  <td>
+                      {{-- <h3> Servicios </h3> --}}
+                      <a class = " btn btn-info xs " href="{{ route('servicio.create') }}"> Add Servicio </a>
+                  </td>
+                    <td>  
+                  <a  class = " btn btn-info xs " href="{{  route('tecnico') }}">
+                          Add Service technical
+                      </a>
+                    </td>
+              </tr>
+          </table>
+         
+      </div>
+  </div>
 
-    <table >
-            <tr class="form-group">
-                <th scope="col"><h3> Servicios </h3>
-                    <a class = " btn btn-info xs " href="{{ route('servicio.create') }}"> Add Servicio </a>
-                    <a  class = " btn btn-info xs " href="{{  route('tecnico') }}">
-                        Add Service technical
-                    </a>
-                </th>
-                
-            </tr>
-          </table>  
            
           @if (Session::has('success_msg'))
           <div class="alert alert-success">
