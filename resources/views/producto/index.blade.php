@@ -70,7 +70,7 @@
                         <form class="form-group" method="POST" action="{{ route ('producto.destroy', $producto->id) }}">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <button class=" btn btn-danger xs " type="submit">Eliminar</button>
+                            <button class=" btn btn-danger xs " type="submit" onclick="return confirm(' ¿Esta seguro que desea eiminar este Producto ?')">Eliminar</button>
                         </form>
                     </div>
                 </td>

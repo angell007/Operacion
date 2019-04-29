@@ -41,70 +41,54 @@
         </table>
     </div>
 
-    <form action="{{ route('articulo.store') }}" method="POST">
+    <form action="{{ route('articulo.update', $articulos->id) }}" method="POST">
         {{ csrf_field() }}
+        {!!method_field('PUT')!!}
 
-      
-
-{{-- 
-        @if (isset($servicios))
-        <div class="form-group col-md-6">
-            <label> Referencia de servicio </label>
-            <select class="form-control" name="servicio_id">
-                <option disabled selected> Choose...</option>
-                @foreach ($servicios as $item)
-                <option value="{{ $item }}">{{ $item }}</option>
-                @endforeach
-            </select>
-        </div>
-        @else
-
-        @endif --}}
-        
-<input type="hidden"  name="servicio_id"  value="{{ $servicio->id }}">
   <div class="form-group col-md-6">
             <label> marca </label>
-            <input type="text" class="form-control" name="marca" placeholder="marca">
+            <input type="text" class="form-control" name="marca" placeholder="marca" value=" {{ $articulos->marca }}">
         </div>
 
         <div class="form-group col-md-6">
             <label> modelo </label>
-            <input type="text" class="form-control" name="modelo" placeholder="modelo">
+            <input type="text" class="form-control" name="modelo" placeholder="modelo" value=" {{ $articulos->modelo }}">
         </div>
 
         <div class="form-group col-md-6">
             <label> serie </label>
-            <input type="text" class="form-control" name="serie" placeholder="serie">
+            <input type="text" class="form-control" name="serie" placeholder="serie" value=" {{ $articulos->serie }}">
         </div>
 
         <div class="form-group col-md-6">
             <label> imei </label>
-            <input type="text" class="form-control" name="imei1" placeholder="imei">
+            <input type="text" class="form-control" name="imei1" placeholder="imei" value=" {{ $articulos->imei1 }}">
         </div>
 
         <div class="form-group col-md-6">
             <label> imei2 </label>
-            <input type="text" class="form-control" name="ime2" placeholder="ime2">
+            <input type="text" class="form-control" name="ime2" placeholder="ime2" value=" {{ $articulos->ime2 }}">
         </div>
 
         <div class="form-group col-md-6">
             <label> almacen de Procedencia </label>
-            <input type="text" class="form-control" name="almacen_compra" placeholder="almacen de Procedencia">
+            <input type="text" class="form-control" name="almacen_compra" placeholder="almacen de Procedencia" value=" {{ $articulos->almacen_compra }}">
         </div>
 
         <div class="form-group col-md-6">
             <label> numero de factura de procedencia </label>
             <input type="number" class="form-control" name="numero_factura_compra"
-                placeholder="numero de factura de procedencia">
+                placeholder="numero de factura de procedencia" value=" {{ $articulos->numero_factura_compra }}">
         </div>
 
         <div class="form-group col-md-6">
             <label> numero de garantia </label>
-            <input type="number" class="form-control" name="numero_vertificado_garantia" placeholder="numero de garantia">
+            <input type="number" class="form-control" name="numero_vertificado_garantia" 
+            placeholder="numero de garantia" value=" {{ $articulos->numero_vertificado_garantia }}">
         </div>
 
         <div class="form-group col-md-12">
-            <button type="submit" class="btn btn-primary">Registrar Articulo</button>
+            <button type="submit" class="btn btn-primary">Update Articulo</button>
         </div>
 
     </form> 

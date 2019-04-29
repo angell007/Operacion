@@ -117,6 +117,8 @@ class ProductoController extends Controller
          try {
              $Producto = Producto::findOrFail($id);
           $Producto -> update(request()->all());
+          return redirect()->route('producto.index');
+
          } catch (\Throwable $th) {
              return back()->with('warning_msg','Error en productos '. $th->getMessage());
          }

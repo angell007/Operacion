@@ -15,10 +15,11 @@ th {
 td, th { 
 	padding: 20px 30px;
 	border: 1px solid rgb(255, 255, 255); 
-	text-align: left; 
+	/* text-align: left;  */
 	font-size: 18px;
 	}
 
+	
 	  
 	  table {
 		border: 1px solid rgba(0, 0, 0, 0.253);
@@ -40,14 +41,17 @@ td, th {
 		padding: .35em;
 	  }
 	  
-	  table th,
+	  
 	  table td {
 		padding: .625em;
 		text-align: center;
+    text-justify: inter-word;
 	  }
 	  
 	  table th {
 		font-size: .85em;
+		padding: .625em;
+		text-align: center;
 		letter-spacing: .1em;
 		text-transform: uppercase;
 	  }
@@ -82,7 +86,7 @@ td, th {
 		  border-bottom: 1px solid #ddd;
 		  display: block;
 		  font-size: .8em;
-		  text-align: right;
+		  /* text-align: right; */
 		}
 		
 		table td::before {

@@ -104,8 +104,10 @@ class ProveedorController extends Controller
       public function update(Request $request,$id)
       {
          try {
-             $Proveedor = Proveedor::findOrFail($id);
-          $Proveedor -> update(request()->all());
+                    $Proveedor = Proveedor::findOrFail($id);
+                    $Proveedor -> update(request()->all());
+          return redirect()->route('proveedor.index');
+
          } catch (\Throwable $th) {
              return back()->with('warning_msg','Error en proveedor '. $th->getMessage());
          }

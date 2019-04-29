@@ -43,7 +43,7 @@
                 <th class="text  text-primary">Nombre           </th>
                 <th class="text  text-primary">Descripcion      </th>
                 <th class="text  text-primary">Opcion           </th>
-                <th class="text  text-primary">Opcion           </th>
+                {{-- <th class="text  text-primary">Opcion           </th> --}}
                </tr>
             </thead>
             <tbody>
@@ -52,12 +52,12 @@
                 <tr> 
                 <td data-label="Nombre"> {{ $modo->nombre}}</td>
                 <td data-label="Descripcion">{{ $modo->descripcion}}</td>
-                <td data-label ="Opcion"><a class=" btn btn-info xs " href="{{ route('modo.edit', $modo->id) }}">Gestionar  </a> </td>
+                {{-- <td data-label ="Opcion"><a class=" btn btn-info xs " href="{{ route('modo.edit', $modo->id) }}">Gestionar  </a> </td> --}}
                 <td data-label ="Opcion">
                       <form   method="POST" action="{{ route ('modo.destroy', $modo->id) }}">
                           <input type="hidden" name="_method" value="DELETE">
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                          <button class=" btn btn-danger xs " type="submit">Eliminar</button>
+                          <button class=" btn btn-danger xs " type="submit" onclick="return confirm(' ¿Esta seguro que desea eiminar este Modo de servicio ?')">Eliminar</button>
                       </form>
                 </td>  
               </tr>

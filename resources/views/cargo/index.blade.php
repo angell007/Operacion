@@ -58,7 +58,7 @@
                       <form   method="POST" action="{{ route ('cargo.destroy', $cargo->id) }}">
                           <input type="hidden" name="_method" value="DELETE">
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                          <button class=" btn btn-danger xs " type="submit">Eliminar</button>
+                          <button class=" btn btn-danger xs " type="submit" onclick="return confirm('¿Desea eliminar este cargo ?')">Eliminar</button>
                       </form>
                 </td>  
               </tr>

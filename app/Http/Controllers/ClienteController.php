@@ -119,11 +119,12 @@ class ClienteController extends Controller
       * @param  \App\Cliente  $Cliente
       * @return \Illuminate\Http\Response
       */
-     public function update(Request $request, Cliente $Cliente)
+     public function update(Request $request, $id)
      {
-        try {
-            $Cliente = Cliente::findOrFail($Cliente->id);
-         $Cliente -> update(request()->all());
+         try {
+             $Cliente = Cliente::findOrFail($id);
+            $Cliente -> update(request()->all());
+            return redirect()->route('cliente.show', $id );
         } catch (\Throwable $th) {
             return back()->with('warning_msg','Error en clientes '. $e->getMessage());
         }
@@ -147,23 +148,46 @@ class ClienteController extends Controller
 
      }
 
+    //  Route::get('pruebasPastel', function(){
+    //     $pasteles = Pastel::sabor('vainilla')->get();
+    //     dd($pasteles);
+    // });
 
      public function buscar(Request $request)
      {
-        try {
-        $cc = request()->id;
-         if(empty($cc)){
-            $clientes = Cliente::all();
-            return view('cliente.index', compact('clientes'));
+         $clientes = "";
+         switch ($request->filtro) {
+             case 'Identificacion':
+             $clientes = Cliente::identificacion($request->id)->get();
+             break;
+             case 'Nombre':
+             $clientes = Cliente::Nombre($request->id)->get();
+             break;
+             case 'Apellido':
+             $clientes = Cliente::Apellido($request->id)->get();
+             break;
+             default:
+                 # code...
+            break;
         }
-         else {
-            $clientes = Cliente::where('identificacion','like','%'.$cc.'%')->get();
-            return view('cliente.index', compact('clientes'));
-             }             
-        } catch (\Throwable $th) {
-            return back()->with('warning_msg',' some wrong'. $e->getMessage());
-        }
+        return view('cliente.index', compact('clientes'));
+        
+
+        // try {
+        // $cc = request()->id;
+        //  if(empty($cc)){
+        //     $clientes = Cliente::all();
+        // }
+        //  else {
+        //     $clientes = Cliente::where('identificacion','like','%'.$cc.'%')->get();
+        //     return view('cliente.index', compact('clientes'));
+        //      }             
+        // } catch (\Throwable $th) {
+        //     return back()->with('warning_msg',' some wrong'. $e->getMessage());
+        // }
        
      }
+
+    
   
 }

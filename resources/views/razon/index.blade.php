@@ -42,7 +42,7 @@
               <tr>
                 <th class="text  text-primary">Nombre           </th>
                 <th class="text  text-primary">Descripcion      </th>
-                <th class="text  text-primary">Opcion           </th>
+                {{-- <th class="text  text-primary">Opcion           </th> --}}
                 <th class="text  text-primary">Opcion           </th>
                </tr>
             </thead>
@@ -52,12 +52,12 @@
                 <tr> 
                 <td data-label="Nombre"> {{ $razon->nombre}}</td>
                 <td data-label="Descripcion">{{ $razon->descripcion}}</td>
-                <td data-label ="Opcion"><a class=" btn btn-info xs " href="{{ route('razon.edit', $razon->id) }}">Gestionar  </a> </td>
+                {{-- <td data-label ="Opcion"><a class=" btn btn-info xs " href="{{ route('razon.edit', $razon->id) }}">Gestionar  </a> </td> --}}
                 <td data-label ="Opcion">
                       <form   method="POST" action="{{ route ('razon.destroy', $razon->id) }}">
                           <input type="hidden" name="_method" value="DELETE">
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                          <button class=" btn btn-danger xs " type="submit">Eliminar</button>
+                          <button class=" btn btn-danger xs " type="submit" onclick="return confirm(' ¿Esta seguro que desea eiminar esta razon pendiente ?')">Eliminar</button>
                       </form>
                 </td>  
               </tr>

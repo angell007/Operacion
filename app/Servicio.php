@@ -55,8 +55,19 @@ class Servicio extends Model
 
     function articulos ()
     {
-        return $this-> hasMany(Articulo::Class, 'serie', 'articulo_id');
+        return $this-> hasMany(Articulo::Class);
     }
+
+     // this is a recommended way to declare event handlers
+     public static function boot() {
+        parent::boot();
+
+        static::deleting(function($Servicio) { // before delete() method call this
+            $Servicio->articulos()->delete();
+             // do the rest of the cleanup...
+        });
+    }
+
 
     function razonPendiente ()
     {

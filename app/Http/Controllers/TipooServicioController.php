@@ -113,6 +113,7 @@ class TipooServicioController extends Controller
          try {
              $TipooServicio = TipooServicio::findOrFail($id);
           $TipooServicio -> update(request()->all());
+          return redirect()->route('tipo.index');
          } catch (\Throwable $th) {
              return back()->with('warning_msg','Error en tipos  '. $th->getMessage());
          }

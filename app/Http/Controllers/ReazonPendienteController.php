@@ -112,6 +112,8 @@ class ReazonPendienteController extends Controller
          try {
              $ReazonPendiente = ReazonPendiente::findOrFail($id);
           $ReazonPendiente -> update(request()->all());
+          return redirect()->route('razon.index');
+
          } catch (\Throwable $th) {
              return back()->with('warning_msg','Error en razones '. $th->getMessage());
          }

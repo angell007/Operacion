@@ -34,4 +34,17 @@ class Cliente extends Model
     {
         return $this-> hasMany(Factura::Class);
     }
+
+    public function scopeNombre($query, $nombre){
+        return $query->where('nombre','like','%'.$nombre.'%');
+    }
+
+    public function scopeApellido($query, $apellido){
+        return $query->where('apellido','like','%'.$apellido.'%');
+    }
+
+    public function scopeIdentificacion($query, $identificacion){
+        return $query->where('identificacion','like','%'.$identificacion.'%');
+
+    }
 }

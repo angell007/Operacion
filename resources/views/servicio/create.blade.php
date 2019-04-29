@@ -188,7 +188,7 @@
 
         <div class="form-group col-md-6">
             <label> fecha inicio </label>
-            <input type="date" class="form-control" name="fecha_inicio" placeholder="fecha inicio ">
+            <input  class="form-control" name="fecha_inicio"  placeholder="fecha Inicio " value="{{ \Carbon\Carbon::now()->toDateString() }}" readonly>
         </div>
 
         {{-- <div class="form-group col-md-6">

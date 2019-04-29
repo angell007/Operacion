@@ -37,17 +37,30 @@
             </tr>
         </table>
     </div>
+    
+    @foreach ($servicio as $servicio)
+    
     <div class="form-group col-md-12">
         <a class=" btn btn-info xs " href="#">Add Producto </a>
-        <a class=" btn btn-info xs " href="#">Add Articulo </a>
-
+        <td data-label="Opcion"><a class = " btn btn-info xs " href="{{ route('addArticulo', encrypt($servicio->id)) }}"> Add Articulo</a> </td>
     </div>
-
-    @foreach ($servicio as $servicio)
-
+    
     <form action="{{ route('servicio.update', $servicio->id) }}" method="POST">
         {!!method_field('PUT')!!}
         {{ csrf_field() }}
+        
+        @if (isset( $servicio->articulos))
+        <div class="form-group col-md-6">
+            <label > Articulos asociados a este servicio</label>
+                <ul>
+                        @foreach ($servicio->articulos as $item)
+                            <li> 
+                            <a href="{{ route('articulo.edit', $item->id)  }}">   {{ $item->serie }} </a> 
+                            </li>
+                        @endforeach
+                </ul>
+        </div>
+        @endif
 
         @if (isset($servicio->razonPendiente->nombre))
         <div class="form-group col-md-6">
@@ -187,29 +200,20 @@
         @endif
         {{-- {{ dd($servicio->articulo->articulo_id) }} --}}
 
-        @if (isset( $servicio->articulo_id))
+      
+{{-- {{ dd($servicio) }} --}}
+        {{-- @if (isset( $servicio->productos))
         <div class="form-group col-md-6">
-            <label>Referencia de articulo </label>
-            {{-- {{ dd($servicio->articulo) }} --}}
-            <select class="form-control" name="articulo_id">
-                <option value="{{ $servicio->articulo_id }}">{{ $servicio->articulo_id }}</option>
-                @foreach ($articulos as $item)
-                <option value="{{ $item }}">{{ $item }}</option>
-                @endforeach
-            </select>
+            <label > Productos asociados a este servicio</label>
+                <ul>
+                        @foreach ($servicio->productos as $item)
+                            <li> 
+                            <a href="{{ route('articulo.edit', $item->id)  }}">   {{ $item->referencia }} </a> 
+                            </li>
+                        @endforeach
+                </ul>
         </div>
-        @else
-
-        <div class="form-group col-md-6">
-            <label>Referencia de articulo </label>
-            <select class="form-control" name="articulo_id">
-                <option disabled selected> No hay articulo </option>
-                @foreach ($articulos as $item)
-                <option value="{{ $item }}">{{ $item }}</option>
-                @endforeach
-            </select>
-        </div>
-        @endif
+        @endif --}}
 
 
         @if (isset($servicio->fecha_reparado))
@@ -222,7 +226,8 @@
 
         <div class="form-group col-md-6">
             <label> fecha reparado </label>
-            <input type="date" class="form-control" name="fecha_reparado" placeholder="fecha reparado ">
+            <input type="date" class="form-control" name="fecha_reparado" placeholder="fecha finalizado" 
+            value="{{ $servicio->fecha_reparado }}">
         </div>
         @endif
 

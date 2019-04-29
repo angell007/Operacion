@@ -8,7 +8,9 @@
             <tr class="form-group">
                 <th scope="col"><h3> Servicios </h3>
                     <a class = " btn btn-info xs " href="{{ route('servicio.create') }}"> Add Servicio </a>
-                    
+                    <a  class = " btn btn-info xs " href="{{  route('tecnico') }}">
+                        Add Service technical
+                    </a>
                 </th>
                 
             </tr>
@@ -28,6 +30,16 @@
           </div>
           @endif
 
+            @if ($errors->any())
+              <div class="alert alert-danger">
+                <ul>
+                  @foreach ($errors->all() as $error)
+                   <li>{{ $error }}</li>
+                  @endforeach
+                </ul>
+              </div>
+            @endif
+            
           <table class="responstable">
             <thead>
               <tr>
@@ -71,7 +83,7 @@
                       <form  method="POST" action="{{ route ('servicio.destroy', $servicio->id) }}">
                           <input type="hidden" name="_method" value="DELETE">
                           <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                          <button class=" btn btn-danger xs " type="submit">Eliminar</button>
+                          <button class=" btn btn-danger xs "  onclick="return confirm(' ¿Esta seguro que desea eiminar este servicio ?')" type="submit">Eliminar</button>
                       </form>
                   {{-- </div> --}}
               </td>  

@@ -24,4 +24,22 @@ class Articulo extends Model
    {
        return $this-> belongsTo(Proveedor::Class);
    }
+
+   function servicio ()
+   {
+       return $this-> belongsTo(Servicio::Class);
+   }
+
+    public function scopeTipo($query, $tipo){
+    return $query->where('tipo','like','%'.$tipo.'%');
+    }
+
+    public function scopeMarca($query, $marca){
+    return $query->where('marca','like','%'.$marca.'%');
+    }
+
+    public function scopeModelo($query, $modelo){
+    return $query->where('modelo','like','%'.$modelo.'%');
+
+    }
 }

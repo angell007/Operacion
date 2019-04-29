@@ -114,6 +114,8 @@ class ModoServicioController extends Controller
          try {
              $ModoServicio = ModoServicio::findOrFail($id);
           $ModoServicio -> update(request()->all());
+          return redirect()->route('modo.index');
+
          } catch (\Throwable $th) {
              return back()->with('warning_msg','Error en modos '. $th->getMessage());
          }

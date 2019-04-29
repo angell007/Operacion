@@ -36,8 +36,11 @@ Route::resource('/estado','EstadoPedidoController');
 Route::resource('/proveedor','ProveedorController');
 Route::resource('/factura','FacturaController');
 Route::resource('/producto','ProductoController');
-Route::get('/{id?}','ServicioController@registro')->name('registro');
-Route::post('/search','ClienteController@buscar')->name('search');
+Route::get('/servicio/create/{id?}','ServicioController@registro')->name('addServicio');
+Route::get('/articulo/create/{id?}','ArticuloController@registro')->name('addArticulo');
+Route::post('/cliente/search','ClienteController@buscar')->name('search');
+Route::post('/articulo/search','ArticuloController@buscar')->name('ArticuloSearch');
+
 
 Auth::routes();
 

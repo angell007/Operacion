@@ -1,6 +1,7 @@
 @extends('layouts.app')
 @section('content')
 <div class="container">
+        <link href="{{ asset('css/tableindex.css') }}" rel="stylesheet">
     <div class="panel panel-default">
         <div class="panel-heading">
             <table class="table">
@@ -35,12 +36,15 @@
         <em>{!! Session::get('warning_msg') !!}</em>
     </div>
     @endif
-    <table class="table">
+    <table class="respontable">
         <thead>
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Nombre</th>
                 <th scope="col"> Descripcion </th>
+                <th scope="col"> Opcion </th>
+                <th scope="col"> Opcion </th>
+
             </tr>
         </thead>
         <tbody>
@@ -59,7 +63,7 @@
                         <form class="form-group" method="POST" action="{{ route ('proveedor.destroy', $proveedor->id) }}">
                             <input type="hidden" name="_method" value="DELETE">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            <button class=" btn btn-danger xs " type="submit">Eliminar</button>
+                            <button class=" btn btn-danger xs " type="submit" onclick="return confirm(' ¿Esta seguro que desea eiminar este Proveedor ?')">Eliminar</button>
                         </form>
                     </div>
                 </td>

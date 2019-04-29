@@ -113,6 +113,8 @@ class EstadoPedidoController extends Controller
          try {
              $EstadoPedido = EstadoPedido::findOrFail($id);
           $EstadoPedido -> update(request()->all());
+          return redirect()->route('estado.index');
+
          } catch (\Throwable $th) {
              return back()->with('warning_msg','Error en estados '. $th->getMessage());
          }

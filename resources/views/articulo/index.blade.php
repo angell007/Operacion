@@ -5,23 +5,42 @@
 
     <div class="panel panel-default">
         <div class="panel-heading">
-            <table>
+            {{-- <table>
                 <tr class="form-group">
                     <th>
                         <h3> Articulos </h3>
                         <a class=" btn btn-info xs " href="{{ route('articulo.create') }}"> Add articulo </a>
                     </th>
                 </tr>
-            </table>
-            {{-- <div class="panel-body">
-                <form action="{{route ('search')}}" method="POST">
-                    {{ csrf_field() }}
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="search" name="id" placeholder="documento...">
-                        <input type="submit" class="btn btn-primary xs" value="Buscar">
-                    </div>
-                </form>
-            </div> --}}
+            </table> --}}
+            <div class="panel-body">
+                    <form action="{{route ('ArticuloSearch')}}" method="POST">
+                        {{ csrf_field() }}
+    
+                        
+                        <div class="form-group col-md-4">
+                            <select name ="filtro" class="form-control">
+                                <option value="Tipo">
+                                   Tipo
+                                </option>
+                                <option value="Modelo">
+                                    Modelo
+                                </option>
+                                <option value="Marca">
+                                    Marca
+                                </option>
+                            </select>
+                        </div>
+    
+                        <div class="form-group col-md-6">
+                            <input type="text" class="form-control"  name="id" placeholder="Buscar...">
+                        </div>
+                        <div class="form-group col-md-2">
+                                <input type="submit" class="btn btn-primary xs" value="Buscar">
+                            </div>
+    
+                    </form>
+                </div>
         </div>
     </div>
     @if (Session::has('success_msg'))
@@ -41,7 +60,7 @@
     <table class="responstable">
         <thead>
           <tr>
-            <th class="text  text-primary">Cliente          </th>
+            {{-- <th class="text  text-primary">Cliente          </th> --}}
             <th class="text  text-primary">Ref de servicio  </th>
             <th class="text  text-primary">Serie            </th>
             {{-- <th class="text  text-success">Articulos </th> --}}
@@ -58,7 +77,7 @@
       
         @foreach ($articulos as $articulo)
             <tr> 
-            <td data-label="Cliente"> {{ $articulo->cliente_id }}</td>
+            {{-- <td data-label="Cliente"> {{ $articulo->cliente_id }}</td> --}}
             <td data-label="Ref de servicio">{{ $articulo->servicio_id}}</td>
             <td data-label="Serie">{{ $articulo->serie}}</td>
             <td data-label="Marca"> {{ $articulo->marca}} </td>
@@ -69,7 +88,7 @@
                   <form   method="POST" action="{{ route ('articulo.destroy', $articulo->id)  }}">
                       <input type="hidden" name="_method" value="DELETE">
                       <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                      <button class=" btn btn-danger xs " type="submit">Eliminar</button>
+                      <button class=" btn btn-danger xs " type="submit" onclick="return confirm(' ¿Esta seguro que desea eiminar este Articulo ?')">Eliminar</button>
                   </form>
             </td>  
           </tr>

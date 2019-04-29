@@ -93,10 +93,10 @@ class CargoController extends Controller
       * @param  \App\Cargo  $Cargo
       * @return \Illuminate\Http\Response
       */
-     public function edit(Cargo $Cargo)
+     public function edit($id)
      {
         try {
-            $cargos =   Cargo::findOrFail($Cargo->id);
+            $cargos =   Cargo::findOrFail($id);
             return  view('cargo.edit',compact('cargos'));
         } catch (\Throwable $th) {
             return back()->with('warning_msg','Error en Cargos '. $th->getMessage());
@@ -110,11 +110,12 @@ class CargoController extends Controller
       * @param  \App\Cargo  $Cargo
       * @return \Illuminate\Http\Response
       */
-     public function update(Request $request, Cargo $Cargo)
+     public function update(Request $request, $id)
      {
         try {
-            $cargo = Cargo::findOrFail($Cargo->id);
+         $cargo = Cargo::findOrFail($id);
          $cargo -> update(request()->all());
+         return redirect()->route('cargo.index');
         } catch (\Throwable $th) {
             return back()->with('warning_msg','Error en Cargos '. $th->getMessage());
         }
