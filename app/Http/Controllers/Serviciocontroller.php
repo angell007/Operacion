@@ -50,7 +50,7 @@ class ServicioController extends Controller
         $clientes = Cliente::All()->pluck('identificacion');
         // $articulos = Articulo::All()->pluck('serie');
         // $productos = Producto::All()->pluck('referencia');
-        $pendientes = ReazonPendiente::All()->pluck('nombre');
+        // $pendientes = ReazonPendiente::All()->pluck('nombre');
         $modos = ModoServicio::select('nombre','id')->get();
         // dd($modos);
         $tipos = TipooServicio::select('nombre','id')->get();
@@ -221,7 +221,7 @@ class ServicioController extends Controller
         $usuarios = User::All()->pluck('identificacion');
         $articulos = Articulo::All()->pluck('serie');
         $productos = Producto::All()->pluck('referencia');
-        $pendientes = ReazonPendiente::All()->pluck('nombre');
+        $pendientes = ReazonPendiente::select('nombre','id')->get();
         $modos = ModoServicio::All()->pluck('nombre');
         $tipos = TipooServicio::All()->pluck('nombre');
         return view ('servicio.edit', compact('servicio', 'tipos','productos','modos','usuarios','articulos','pendientes'));
@@ -237,13 +237,13 @@ class ServicioController extends Controller
      */
     public function update(Request $request, $id)
     {
-        try {
+        // try {
             $servicio = Servicio::findOrfail($id);
             $servicio-> update(request()->all());          
             return  redirect()->route('servicio.index')->with('success_msg',' Exito ');
-        } catch (\Throwable $th) {
-            return back()->with('warning_msg','Error en Servicios '. $th->getMessage());
-        }
+        // } catch (\Throwable $th) {
+        //     return back()->with('warning_msg','Error en Servicios '. $th->getMessage());
+        // }
     }
 
     /**

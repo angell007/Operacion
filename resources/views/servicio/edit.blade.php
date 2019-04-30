@@ -41,7 +41,7 @@
     @foreach ($servicio as $servicio)
     
     <div class="form-group col-md-12">
-        <a class=" btn btn-info xs " href="#">Add Producto </a>
+        {{-- <a class=" btn btn-info xs " href="#">Add Producto </a> --}}
         <td data-label="Opcion"><a class = " btn btn-info xs " href="{{ route('addArticulo', encrypt($servicio->id)) }}"> Add Articulo</a> </td>
     </div>
     
@@ -49,9 +49,26 @@
         {!!method_field('PUT')!!}
         {{ csrf_field() }}
         
+        {{-- @if (isset( $servicio->productos))
+        <div class="form-group col-md-6">
+            <label > Productos asociados a este servicio</label>
+                <ul>
+                        @foreach ($servicio->productos as $item)
+                            <li> 
+                            <a href="{{ route('articulo.edit', $item->id)  }}">   {{ $item->serie }} </a> 
+                            </li>
+                        @endforeach
+                </ul>
+        </div>
+        @else
+        <div class="form-group col-md-6">
+                <label > Productos asociados a este servicio</label>
+            </div>
+        @endif --}}
+
         @if (isset( $servicio->articulos))
         <div class="form-group col-md-6">
-            <label > Articulos asociados a este servicio</label>
+            <label > articulos asociados a este servicio</label>
                 <ul>
                         @foreach ($servicio->articulos as $item)
                             <li> 
@@ -60,6 +77,10 @@
                         @endforeach
                 </ul>
         </div>
+        @else
+        <div class="form-group col-md-6">
+                <label > articulos asociados a este servicio</label>
+            </div>
         @endif
 
         @if (isset($servicio->razonPendiente->nombre))
@@ -67,9 +88,10 @@
             <label>Razon pendiente </label>
             <select class="form-control" name="razon_pendiente_id">
                 <option disabled selected value="{{ $servicio->razonPendiente->id }}">
-                    {{ $servicio->razonPendiente->nombre }}</option>
+                    {{ $servicio->razonPendiente->nombre }}
+                </option>
                 @foreach ($pendientes as $item)
-                <option value="{{ $item }}">{{ $item }}</option>
+                <option value="{{ $item->id }}">{{ $item->nombre }}</option>
                 @endforeach
             </select>
         </div>
@@ -77,7 +99,7 @@
 
         <div class="form-group col-md-6">
             <label>Razon pendiente </label>
-            <select class="form-control">
+            <select class="form-control" name="razon_pendiente_id">
                 <option disabled selected> No hay pendientes </option>
                 @foreach ($pendientes as $item)
                 <option value="{{ $item }}">{{ $item }}</option>
@@ -176,44 +198,10 @@
         </div>
         @endif
 
-
-        @if (isset($servicio->producto->referencia))
-        <div class="form-group col-md-6">
-            <label>Referencia de producto </label>
-            <select class="form-control" name="producto_id">
-                <option> {{ $servicio->producto->referencia  }}</option>
-            </select>
-        </div>
-        @else
-        <div class="form-group col-md-6">
-            <label>Referencia de producto </label>
-            <select class="form-control" name="producto_id">
-                <option> No hay Productos </option>
-            </select>
-        </div>
-
         <div class="form-group col-md-6">
             <label> ubicacion del producto </label>
             <input type="text" class="form-control" name="ubicacion_producto" placeholder="ubicacion del producto ">
         </div>
-
-        @endif
-        {{-- {{ dd($servicio->articulo->articulo_id) }} --}}
-
-      
-{{-- {{ dd($servicio) }} --}}
-        {{-- @if (isset( $servicio->productos))
-        <div class="form-group col-md-6">
-            <label > Productos asociados a este servicio</label>
-                <ul>
-                        @foreach ($servicio->productos as $item)
-                            <li> 
-                            <a href="{{ route('articulo.edit', $item->id)  }}">   {{ $item->referencia }} </a> 
-                            </li>
-                        @endforeach
-                </ul>
-        </div>
-        @endif --}}
 
 
         @if (isset($servicio->fecha_reparado))
