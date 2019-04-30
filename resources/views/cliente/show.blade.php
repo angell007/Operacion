@@ -124,14 +124,14 @@
             </form>
           
 
-                    <table class="table">
+                    <table class="respontable">
                             <thead>
                               <tr>
-                                <th scope="col" >#</th>
-                                <th scope="col" >Nombre</th>
-                                <th scope="col" >Identificacion</th>
-                                <th scope="col" >Opcion</th>
-                                <th scope="col" >Opcion</th>
+                                {{-- <th scope="col" >#</th> --}}
+                                <th >Nombre</th>
+                                <th >Identificacion</th>
+                                <th >Opcion</th>
+                                <th >Opcion</th>
                                 {{-- <th scope="col" >Opcion</th> --}}
 
                               </tr>
@@ -143,7 +143,7 @@
                                 @else --}}
 
                               <tr>
-                                  <th scope="row" data-label="#">{{ $cliente->id }}</th>
+                                  {{-- <th scope="row" data-label="#">{{ $cliente->id }}</th> --}}
                                   <td data-label="Nombre" >  {{ $cliente->nombre .' '. $cliente->apellido }}   </td>
                                   <td data-label="Identificacion">  {{ $cliente->identificacion }}   </td>
                                   <td data-label="Opcion"><a class = " btn btn-info xs " href="{{ route('addServicio', encrypt($cliente->identificacion )) }}"> Add Servicio </a> </td>
@@ -174,54 +174,70 @@
                                   </table>
                               </div>
                           
-                          <table class="table">
-                                <thead>
-                                  <tr>
-                                    <th scope="col">#</th>
-                                    <th scope="col">Fecha de Inicio</th>
-                                    <th scope="col">Valor cotizado</th>
-                                    <th scope="col">Opciones</th>
-                                    <th scope="col">Opciones</th>
-
-                                  </tr>
-                                </thead>
-                                <tbody>
-
+                         
                                 @if ($servicios->isEmpty())
-                                <thead>
-                                        <tr class="alert-danger">
-                                          <th  colspan =  "5" scope="col">
+                              
                                               
-                                              No hay Servicios
-                                        </th> 
-      
-                                        </tr>
-                                      </thead>
+                                             <h3>
+                                                 No hay Servicios
+                                            </h3>
+                                      
                                 @else
 
-                               @foreach ($servicios as $servicio)
-                                   
-                              
-                                  <tr>
-                                      <th scope="row">{{ $servicio->id }}</th>
-                                      <td>  {{ $servicio->fecha_inicio}}   </td>
-                                      <td>  {{ $servicio->valor_cotizado }}   </td>
-                  
-                                      <td data-label="Opcion"><a class = " btn btn-info xs " href="{{ route('cliente.show', $servicio->id) }}"> Mostrar </a> </td>
-                                      <td>
-                                            <div class="form-group">
-                                                <form  class="form-group" method = "POST" action="{{ route ('cliente.destroy', $servicio->id) }}">
-                                                    <input type="hidden" name="_method" value="DELETE">
-                                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                                    <button class = " btn btn-danger xs " type="submit">Eliminar</button>
-                                                </form>
-                                            </div>
-                                      </td> 
-                                    </tr>
-                                    @endforeach
+                                <table class="responstable">
+                                        <thead>
+                                          <tr>
+                                            {{-- <th class="text  text-primary">#</th> --}}
+                                            {{-- <th class="text  text-primary">Cliente</th> --}}
+                                            <th class="text  text-primary">Tecnico</th>
+                                            {{-- <th class="text  text-success">Articulos </th> --}}
+                                            <th class="text  text-primary">Pendiente</th>
+                                            <th class="text  text-primary">Fecha de inicio</th>
+                                            <th class="text  text-primary">Fecha de reparado</th>
+                                            <th class="text  text-primary">Fecha de finalizado</th>
+                                            <th class="text  text-primary">Opcion</th>
+                                            <th class="text  text-primary">Opcion</th>
+                                           </tr>
+                                      
+                                        </thead>
+                                        <tbody>
+                                      
+                                          @foreach ($servicios as $servicio)  
+                                          <tr> 
+                                         {{-- <td data-label="Opcion"><a class = " btn btn-info xs " href="{{ route ('Materia.show', $Materia->id) }}"> Ver detalles  </a> </td> --}}
+                                            {{-- <td data-label="#">{{ $servicio->id }}</td> --}}
+                                            {{-- <td data-label="Cliente">{{ $servicio->cliente->identificacion}}</td> --}}
+                                            <td data-label="Tecnico">{{ $servicio->customer->identificacion}}</td>
+                                            {{-- <td data-label="Articulos">{{ $servicio->articulos->implode('marca', '|| ')}} </td> --}}
+                                            <td data-label="Pendiente">{{ $servicio->razonPendiente->nombre}} </td>
+                                            <td data-label="Fecha de inicio ">{{ $servicio->fecha_inicio}} </td>
+                                            @if (isset($servicio->fecha_reparado))
+                                            <td data-label="Fecha de reparado ">{{ $servicio->fecha_reparado}} </td>
+                                            @else
+                                            <td data-label="Fecha de reparado ">   sin fecha </td>
+                                            @endif
+                                            @if (isset($servicio->fecha_finalizado))
+                                            <td data-label="Fecha de finalizado ">{{ $servicio->fecha_finalizado}} </td>
+                                            @else
+                                            <td data-label="Fecha de reparado ">   sin fecha </td>
+                                            @endif
+                                            <td data-label ="Opcion"><a class=" btn btn-info xs " href="{{ route('servicio.edit',encrypt( $servicio->id)) }}">Gestionar {{ $servicio->id}}  </a> </td>
+                                          <td data-label ="Opcion">
+                                              {{-- <div class="form-group"> --}}
+                                                  <form  method="POST" action="{{ route ('servicio.destroy', $servicio->id) }}">
+                                                      <input type="hidden" name="_method" value="DELETE">
+                                                      <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                      <button class=" btn btn-danger xs "  onclick="return confirm(' ¿Esta seguro que desea eiminar este servicio ?')" type="submit">Eliminar</button>
+                                                  </form>
+                                              {{-- </div> --}}
+                                          </td>  
+                                       
+                                          </tr>
+                                      </tbody>
+                                      @endforeach 
+                                      </table> 
                                     @endif
                                 </tbody>
-                              </table>          
     </div>
 
 @endsection

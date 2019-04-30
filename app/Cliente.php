@@ -27,7 +27,7 @@ class Cliente extends Model
 
     function servicios()
     {
-        return $this-> hasMAny(Servicio::Class);
+        return $this-> hasMAny(Servicio::Class,'cliente_id','identificacion');
     }
 
     function facturas ()

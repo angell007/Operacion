@@ -87,11 +87,12 @@ class ClienteController extends Controller
      public function show(Cliente $cliente)
      {
         try {
-            $cliente =   Cliente::findOrFail($cliente->id);
             $servicios = $cliente->servicios;
+            // dd($servicios);
+            $cliente =   Cliente::findOrFail($cliente->id);
             return  view('cliente.show')->with(compact(['cliente','servicios']));
         } catch (\Throwable $th) {
-            return back()->with('warning_msg','Error en clientes '. $e->getMessage());
+            return back()->with('warning_msg','Error en clientes '. $th->getMessage());
         }
 
      }
