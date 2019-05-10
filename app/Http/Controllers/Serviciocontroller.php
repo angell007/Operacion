@@ -111,7 +111,7 @@ class ServicioController extends Controller
                 'sexo' => 'required', 
                 'email' => 'required', 
                 'tipo_identificacion' => 'required', 
-                'identificacion' => 'required',
+                'identificacion' => 'required|numeric|digits_between:1,10',
                 'tipo_casa' => 'required',
                 'ciudad' => 'required',
                 'barrio' => 'required',

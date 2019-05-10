@@ -41,6 +41,7 @@
 
                             <div class="col-md-6">
                                 <input id="identificacion" type="text" class="form-control" name="identificacion" value="{{ old('identificacion') }}" required autofocus>
+                                {{-- maxlength="10" oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"> --}}
 
                                 @if ($errors->has('identificacion'))
                                     <span class="help-block">

@@ -39,7 +39,9 @@ return [
     |
     */
 
-    'debug' => env('APP_DEBUG', false),
+            'debug' => env('APP_DEBUG', false),
+            'url'=>env('APP_URL,','http://neos21.000webhostapp.com'),
+            'env' => env('APP_ENV', 'production'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +54,6 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://localhost'),
 
     /*
     |--------------------------------------------------------------------------
@@ -104,7 +105,7 @@ return [
     |
     */
 
-    'key' => env('APP_KEY'),
+    'key' => env('APP_KEY','base64:RJNquWh/IqsxVGlARTXNhOR1QL7mrz9GCoi4M8z6Djg='),
 
     'cipher' => 'AES-256-CBC',
 

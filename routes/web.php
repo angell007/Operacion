@@ -20,6 +20,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/op', function(){
+return view('operacion');
+});
 Route::resource('/servicio','ServicioController');
 Route::get('/servicio/create/tecnico','ServicioController@tecnico')->name('tecnico');
 Route::post('/servicio/create/tecnico','ServicioController@technical')->name('tecnico');
