@@ -7,24 +7,37 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Operaciones</title>
     <script src="../js/ploy.js"></script>
+    <script src="../js/bulma.js"></script>
+    <script src="../js/kanban.js"></script>
+    <script src="../js/tabs.js"></script>
+    <link rel="stylesheet" href="../css/hero.css">
+    <link rel="stylesheet" href="../css/cards.css">
+    <link rel="stylesheet" href="../css/index.css">
+    <link rel="stylesheet" href="../css/personal.css">
+    <link rel="stylesheet" href="../css/tabs.css">
+
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script> -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        {{-- <link rel="stylesheet" href="https://unpkg.com/bulma@0.7.4/css/bulma.min.css" /> --}}
 
 <body>
 
     <body>
-        <div class="jumbotron jumbotron-fluid" style="background-color: #fff;">
+        <div class="jumbotron jumbotron-fluid " style="background-color: #fff;">
             <div class="container">
-                <!-- <h2 class="display-6" style="text-align:center;">BIENVENIDO </h2> -->
+                <h2 class="display-6" style="text-align:center;">BIENVENIDO </h2> 
                 <div class="container-fluid">
-                    <div class="panel panel-default">
-                        <div class="panel-heading"></div>
-                        <div class="panel-body">
+                    <div class="panel panel-default  border  border-success">
+                        <div class="panel-heading " >
+                            {{-- <h3> Investigacion de operaciones </h3> --}}
+                        </div>
+                        <div class="panel-body border">
                             <!-- inicializamos el formulario  -->
                             <!-- Definimos el encabezado  -->
+                            <br>
                             <form style="text-align:center;">
                                 <div class="form-group col-xs-12 col-sm-12 col-md-12">
                                     <label class="label label label-default col-xs-2 col-sm-2 col-md-2" for="">Recursos
@@ -118,33 +131,35 @@
                                         onclick="calcular()">
                                 </div>
                             </form>
-                            <div id="chart"></div>
-                            <div id="resultados">
-                                <section>
-
-                                    <label id="txt1"> </label>
-                                    <label id="txt2"> </label>
-                                    <label id="txt3"> </label>
-
+                            <div  class="container-fluid "> 
+                                <div id="chart"></div>
+                                <div id="resultados">
+                                    <section class="flex-fill">
+                                        
+                                        <label id="txt1"> </label>
+                                        <label id="txt2"> </label>
+                                        <label id="txt3"> </label>
+                                        
+                                    </section>
+                                </div>
+                                <section class="font-italic Italica small text-justify" id="txt">
+                                    La fábrica de Hilados y Tejidos "SALAZAR" requiere fabricar dos tejidos de calidad
+                                    diferente
+                                    Tejido clasico y Tejido sport ; se dispone de 500 Kg de hilo a, 300 Kg de hilo b y 108
+                                    Kg de
+                                    hilo c. Para obtener un
+                                    metro de Tejido clasico diariamente se necesitan 125 gr de a, 150 gr de b y 72 gr de c;
+                                    para
+                                    producir un
+                                    metro de tejdo sport por día se necesitan 200 gr de a, 100 gr de b y 27 gr de c.
+                                    El tejido clasico se vende a $4000 el metro y el tejido esport se vende a $5000 el
+                                    metro. Si
+                                    se debe obtener el
+                                    máximo beneficio, ¿cuántos metros de Tejido clasico y Tejido sport se deben fabricar?
                                 </section>
                             </div>
-                            <section class="font-italic Italica small text-justify" id="txt">
-                                La fábrica de Hilados y Tejidos "SALAZAR" requiere fabricar dos tejidos de calidad
-                                diferente
-                                Tejido clasico y Tejido sport ; se dispone de 500 Kg de hilo a, 300 Kg de hilo b y 108
-                                Kg de
-                                hilo c. Para obtener un
-                                metro de Tejido clasico diariamente se necesitan 125 gr de a, 150 gr de b y 72 gr de c;
-                                para
-                                producir un
-                                metro de tejdo sport por día se necesitan 200 gr de a, 100 gr de b y 27 gr de c.
-                                El tejido clasico se vende a $4000 el metro y el tejido esport se vende a $5000 el
-                                metro. Si
-                                se debe obtener el
-                                máximo beneficio, ¿cuántos metros de Tejido clasico y Tejido sport se deben fabricar?
-                            </section>
-                            <br>
-                        </div>
+                                <br>
+                            </div>
                     </div>
                 </div>
             </div>
@@ -263,35 +278,35 @@
                 x: [0, ppr1],
                 y: [spr1, 0],
 
-                line: { width: 1, color: 'purple', dash: 'solid', shape: 'spline' },
+                line: { width: 1, color: 'red', dash: 'solid', shape: 'spline' },
                 name: 'RestrccionUno',
                 fill: 'tonexty',
                 marker: {
                     symbol: 'circle',
-                    size: 12
+                    size: 16
                 }
             }
             var data2 = {
                 x: [0, ppr2],
                 y: [spr2, 0],
                 type: 'lines',
-                line: { width: 1, color: 'yellow', dash: 'solid', shape: 'spline' },
+                line: { width: 1, color: 'green', dash: 'solid', shape: 'spline' },
                 name: 'RestriccionDos',
                 fill: 'tonexty',
                 marker: {
                     symbol: 'circle',
-                    size: 12
+                    size: 16
                 }
             };
             var data3 = {
                 x: [0, ppr3],
                 y: [spr3, 0],
-                line: { width: 1, color: 'skyblue', dash: 'solid', shape: 'spline' },
+                line: { width: 1, color: 'blue', dash: 'solid', shape: 'spline' },
                 name: 'RestriccionTres',
                 fill: 'tonexty',
                 marker: {
                     symbol: 'circle',
-                    size: 12
+                    size: 16
                 }
             };
 
@@ -314,8 +329,8 @@
                             type: 'scatter',
                             mode: 'markers',
                             marker: {
-                                symbol: 'star',
-                                size: 12,
+                                symbol: 'circle',
+                                size: 16,
                                 color: 'black'
                             },
                             name: 'Punto crítico'
@@ -338,8 +353,8 @@
                             type: 'scatter',
                             mode: 'markers',
                             marker: {
-                                symbol: 'star',
-                                size: 12,
+                                symbol: 'circle',
+                                size: 16,
                                 color: 'black'
                             },
                             name: 'Punto crítico'
@@ -364,8 +379,8 @@
                             type: 'scatter',
                             mode: 'markers',
                             marker: {
-                                symbol: 'star',
-                                size: 12,
+                                symbol: 'circle',
+                                size: 16,
                                 color: 'blue'
                             },
                             name: 'Punto crítico'
@@ -385,8 +400,8 @@
                             type: 'scatter',
                             mode: 'markers',
                             marker: {
-                                symbol: 'star',
-                                size: 12,
+                                symbol: 'circle',
+                                size: 16,
                                 color: 'blue'
                             },
                             name: 'Punto crítico'
@@ -410,9 +425,9 @@
                             type: 'scatter',
                             mode: 'markers',
                             marker: {
-                                symbol: 'star',
-                                size: 12,
-                                color: 'red'
+                                symbol: 'circle',
+                                size: 16,
+                                color: 'black'
                             },
                             name: 'Punto crítico'
                         }
@@ -430,9 +445,9 @@
                             type: 'scatter',
                             mode: 'markers',
                             marker: {
-                                symbol: 'star',
-                                size: 12,
-                                color: 'red'
+                                symbol: 'circle',
+                                size: 16,
+                                color: 'black'
                             },
                             name: 'Punto crítico'
                         }
@@ -444,12 +459,15 @@
                 }
             }
             var layout = {
-                //   title: 'Vertical and Horizontal Lines Positioned Relative to the Axes',
+                  title: 'Cantida de Products' + obj1 + '  VS ' + obj2 ,
+                  size: 16,
                 xaxis: {
-                    title: "Cantidad de : " + ' ' + obj1
+                    title: "Cantidad de : " + ' ' + obj1,
+                    size: 16,
                 },
                 yaxis: {
-                    title: "Cantidad de : " + ' ' + obj2
+                    title: "Cantidad de : " + ' ' + obj2,
+                    size: 16,
                 },
             }
             
